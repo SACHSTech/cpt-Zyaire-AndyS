@@ -1,5 +1,7 @@
 package basic;
 
+
+import java.io.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class TableViewApp extends Application {
 
-    public Parent createContent() {
+    public Parent createContent() throws IOException{
         final ObservableList<Pervalence> data = FXCollections.observableArrayList(
                 new Pervalence("qwq", "code", 1002, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
 
@@ -84,6 +86,7 @@ public class TableViewApp extends Application {
         tableView.getColumns().addAll(entityCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
+
 
     @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
