@@ -98,6 +98,7 @@ public class TableViewApp extends Application {
         alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
         
         final TableView tableView = new TableView();
+
         tableView.setItems(aryList);
         tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
@@ -117,3 +118,4 @@ public class TableViewApp extends Application {
         launch(args);
     }
 }
+© 2021 GitHub, Inc.
