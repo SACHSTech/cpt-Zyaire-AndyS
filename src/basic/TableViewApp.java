@@ -30,7 +30,7 @@ public class TableViewApp extends Application {
 
     public Parent createContent() {
         final ObservableList<Pervalence> data = FXCollections.observableArrayList(
-                new Pervalence("qwq", "code", "1002", 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7),
+                new Pervalence("qwq", "code", "1002", 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
 
         TableColumn entityCol = new TableColumn();
         entityCol.setText("Entity");
@@ -47,37 +47,37 @@ public class TableViewApp extends Application {
         TableColumn schizophreniaCol = new TableColumn();
         schizophreniaCol.setText("Schizonphrenia");
         schizophreniaCol.setMinWidth(200);
-        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Schizophrenia - Sex: Both - Age: Age-standardized (Percent)"));
+        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("schizophrenia"));
 
         TableColumn bipolarCol = new TableColumn();
         bipolarCol.setText("Bipolar Disorders");
         bipolarCol.setMinWidth(200);
-        bipolarCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Bipolar disorder - Sex: Both - Age: Age-standardized (Percent)"));
+        bipolarCol.setCellValueFactory(new PropertyValueFactory("bipolar"));
         
         TableColumn eatingCol = new TableColumn();
         eatingCol.setText("Eating Disorders");
         eatingCol.setMinWidth(200);
-        eatingCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Eating disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        eatingCol.setCellValueFactory(new PropertyValueFactory("eating"));
         
         TableColumn anxietyCol = new TableColumn();
         anxietyCol.setText("Anxiety Disorders");
         anxietyCol.setMinWidth(200);
-        anxietyCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        anxietyCol.setCellValueFactory(new PropertyValueFactory("anxiety"));
         
         TableColumn drugCol = new TableColumn();
         drugCol.setText("Drug use Disorders");
         drugCol.setMinWidth(200);
-        drugCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Drug use disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        drugCol.setCellValueFactory(new PropertyValueFactory("drug"));
         
         TableColumn depressCol = new TableColumn();
         depressCol.setText("Depressive disorders");
         depressCol.setMinWidth(200);
-        depressCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Depressive disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        depressCol.setCellValueFactory(new PropertyValueFactory("depress"));
         
         TableColumn alcoholCol = new TableColumn();
         alcoholCol.setText("Alcohol use Disorders");
         alcoholCol.setMinWidth(200);
-        alcoholCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Alcohol use disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
         
         final TableView tableView = new TableView();
         tableView.setItems(data);
