@@ -15,8 +15,19 @@ public class Sort_Search{
         for (intCount = 0; intCount < list.size(); intCount ++) {
             data.add(list.get(intCount));
         }
-
         return data;
     }
 
+    public static ObservableList <Pervalence> SearchYear(int year) {
+        ObservableList<Pervalence> data = FXCollections.observableArrayList();
+
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+
+            if (year == (list.get(intCount).getYear())) {
+                data.add(list.get(intCount));
+            }
+        }
+        return data;
+    }
+    
 }
