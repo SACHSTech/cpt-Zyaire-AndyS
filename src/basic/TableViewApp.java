@@ -37,20 +37,18 @@ public class TableViewApp extends Application {
         
 
         ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
-        try{
-          BufferedReader br = new BufferedReader(new FileReader("basic/PervalenceByDisorders.csv"));
-          br.readLine();
-          String data;
-          while((data = br.readLine())!=null){
+        BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+        br.readLine();
+        String data;
+        data = br.readLine();
+        while(data != null){
             var split = data.split(",");
             pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
-          }
-          br.close();
-          } catch (Exception e) {
-        
-          }
+            data = br.readLine();
+        }
+        br.close();
 
-        final ObservableList<Pervalence> data = FXCollections.observableArrayList(
+        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(
             pervalenceName);
 
         TableColumn entityCol = new TableColumn();
@@ -101,7 +99,7 @@ public class TableViewApp extends Application {
         alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
         
         final TableView tableView = new TableView();
-        tableView.setItems(data);
+        tableView.setItems(aryList);
         tableView.getColumns().addAll(entityCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
