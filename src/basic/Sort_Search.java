@@ -29,6 +29,7 @@ public class Sort_Search{
         }
         return deathData;
     }
+
     public static ObservableList <Pervalence> byEntity(String entity) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
@@ -49,7 +50,6 @@ public class Sort_Search{
             if (code.equalsIgnoreCase(list.get(intCount).getCode())) {
                 deathData.add(list.get(intCount));
             }
-
         }
         return deathData;
     }
@@ -68,6 +68,7 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+
     public static Integer avgForBipolar() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
@@ -81,6 +82,7 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+
     public static Integer avgForEating() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
@@ -94,6 +96,7 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+
     public static Integer avgForAnxiety() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
@@ -107,6 +110,7 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+
     public static Integer avgForDrug() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
@@ -120,6 +124,7 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+
     public static Integer avgForDepress() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
@@ -146,5 +151,4 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
-
 }
