@@ -50,9 +50,9 @@ public class TableViewApp extends Application {
 
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
 
-        TableColumn entityCol = new TableColumn();
-        entityCol.setText("Entity");
-        entityCol.setCellValueFactory(new PropertyValueFactory("entity"));
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
 
         TableColumn codeCol = new TableColumn();
         codeCol.setText("Code");
@@ -99,7 +99,7 @@ public class TableViewApp extends Application {
         
         final TableView tableView = new TableView();
         tableView.setItems(aryList);
-        tableView.getColumns().addAll(entityCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
+        tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
 
