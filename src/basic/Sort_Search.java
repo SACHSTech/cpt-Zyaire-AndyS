@@ -9,38 +9,59 @@ public class Sort_Search{
     private static ObservableList<Pervalence> list;
     
     public static ObservableList <Pervalence> Everything() {
-        ObservableList<Pervalence> data = FXCollections.observableArrayList();
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         int intCount;
 
         for (intCount = 0; intCount < list.size(); intCount ++) {
-            data.add(list.get(intCount));
+            deathData.add(list.get(intCount));
         }
-        return data;
+        return deathData;
     }
 
-    public static ObservableList <Pervalence> SearchYear(int year) {
-        ObservableList<Pervalence> data = FXCollections.observableArrayList();
+    public static ObservableList <Pervalence> searchYear(int year) {
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
 
             if (year == (list.get(intCount).getYear())) {
-                data.add(list.get(intCount));
+                deathData.add(list.get(intCount));
             }
         }
-        return data;
+        return deathData;
     }
     public static ObservableList <Pervalence> byEntity(String entity) {
-        ObservableList<Pervalence> data = FXCollections.observableArrayList();
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
 
             if (entity.equalsIgnoreCase(list.get(intCount).getEntity())) {
-                data.add(list.get(intCount));
+                deathData.add(list.get(intCount));
             }
 
         }
-        return data;
+        return deathData;
     }
+    
+    public static Integer avgByYear(int year) {
+        ObservableList<Pervalence> deathData = searchYear(year);
+        double total = 0;
+        double avg;
+        Pervalence p;
+        int avgRounded;
+        String country;
 
+        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
+            p = deathData.get(intCount);
+            country = p.getEntity();
+
+            if (!country.equals("World") && !country.equals("Asia") && !country.equals("Europe") && !country.equals("Africa") && !country.equals("North America") && !country.equals("Latin America")) {
+                total = total + (deathData.get(intCount).getSchizophrenia()) + ;
+            }
+        }
+
+        avg = total / deathData.size();
+        avgRounded = (int) Math.round(avg);
+        return avgRounded;
+    }
 
 }
