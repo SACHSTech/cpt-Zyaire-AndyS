@@ -2,25 +2,67 @@ package basic;
 
 public class Person {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String entity;
+    private String code;
+    private String year;
+    private double schizophrenia;
+    private double bipolar;
+    private double eating;
+    private double anxiety;
+    private double drug;
+    private double depress;
+    private double alcohol;
 
-    public Person(String first, String last, String email) {
-        this.firstName = first;
-        this.lastName = last;
-        this.email = email;
+    public Person(String theEntity, String theCode, String theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
+        this.entity = theEntity;
+        this.code = theCode;
+        this.year = theYear;
+        this.schizophrenia = theSchizophrenia;
+        this.bipolar = theBipolar;
+        this.eating = theEating;
+        this.anxiety = theAnxiety;
+        this.drug = theDrug;
+        this.depress = theDepress;
+        this.alcohol = theAlcohol;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getEntity() {
+        return this.entity;
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public String getCode() {
+        return this.code;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getYear() {
+        return this.year;
+    }
+
+    public double getSchizophrenia() {
+        return this.schizophrenia;
+    }
+
+    public double getBipolar() {
+        return this.bipolar;
+    }
+
+    public double getEating() {
+        return this.eating;
+    }
+
+    public double getAnxiety() {
+        return this.anxiety;
+    }
+
+    public double getDrug() {
+        return this.drug;
+    }
+
+    public double getDepress() {
+        return this.depress;
+    }
+
+    public double getAlcohol() {
+        return this.alcohol;
     }
 }
