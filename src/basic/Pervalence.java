@@ -4,7 +4,7 @@ public class Pervalence {
 
     private String entity;
     private String code;
-    private String year;
+    private int year;
     private double schizophrenia;
     private double bipolar;
     private double eating;
@@ -13,7 +13,7 @@ public class Pervalence {
     private double depress;
     private double alcohol;
 
-    public Pervalence(String theEntity, String theCode, String theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
+    public Pervalence(String theEntity, String theCode, int theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
         this.entity = theEntity;
         this.code = theCode;
         this.year = theYear;
@@ -34,7 +34,7 @@ public class Pervalence {
         return this.code;
     }
 
-    public String getYear() {
+    public int getYear() {
         return this.year;
     }
 
