@@ -41,6 +41,18 @@ public class Sort_Search{
         }
         return deathData;
     }
+    public static ObservableList <Pervalence> byCode(String code) {
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
+
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+
+            if (code.equalsIgnoreCase(list.get(intCount).getCode())) {
+                deathData.add(list.get(intCount));
+            }
+
+        }
+        return deathData;
+    }
     
     public static Integer avgForSchizophrenia() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
@@ -134,5 +146,5 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
-    
+
 }
