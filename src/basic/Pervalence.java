@@ -2,7 +2,7 @@ package basic;
 
 public class Pervalence {
 
-    private String entity;
+    private String country;
     private String code;
     private int year;
     private double schizophrenia;
@@ -13,8 +13,8 @@ public class Pervalence {
     private double depress;
     private double alcohol;
 
-    public Pervalence(String theEntity, String theCode, int theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
-        this.entity = theEntity;
+    public Pervalence(String theCountry, String theCode, int theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
+        this.country = theCountry;
         this.code = theCode;
         this.year = theYear;
         this.schizophrenia = theSchizophrenia;
@@ -26,8 +26,8 @@ public class Pervalence {
         this.alcohol = theAlcohol;
     }
 
-    public String getEntity() {
-        return this.entity;
+    public String getCountry() {
+        return this.country;
     }
 
     public String getCode() {
