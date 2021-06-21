@@ -1,6 +1,6 @@
 package basic;
 
-public class Person {
+public class Pervalence {
 
     private String entity;
     private String code;
@@ -13,7 +13,7 @@ public class Person {
     private double depress;
     private double alcohol;
 
-    public Person(String theEntity, String theCode, String theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
+    public Pervalence(String theEntity, String theCode, String theYear, double theSchizophrenia, double theBipolar, double theEating, double theAnxiety, double theDrug, double theDepress, double theAlcohol) {
         this.entity = theEntity;
         this.code = theCode;
         this.year = theYear;

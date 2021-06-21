@@ -29,26 +29,59 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() {
-        final ObservableList<Person> data = FXCollections.observableArrayList(
-                new Person("Jacob", "Smith", "jacob.smith@example.com"),
-                new Person("Sue", "Jones", "sue@example.com"),
-                new Person("Ethan", "Fox", "ethan.fox@example.com"),
-                new Person("Emma", "Jones", "emma.jones@example.com"),
-                new Person("Mike", "Brown", "mike.brown@example.com"));
+        final ObservableList<Pervalence> data = FXCollections.observableArrayList(
+                new Pervalence("qwq", "code", "1002", 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7),
 
-        TableColumn firstNameCol = new TableColumn();
-        firstNameCol.setText("First");
-        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-        TableColumn lastNameCol = new TableColumn();
-        lastNameCol.setText("Last");
-        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-        TableColumn emailCol = new TableColumn();
-        emailCol.setText("Email");
-        emailCol.setMinWidth(200);
-        emailCol.setCellValueFactory(new PropertyValueFactory("email"));
+        TableColumn entityCol = new TableColumn();
+        entityCol.setText("Entity");
+        entityCol.setCellValueFactory(new PropertyValueFactory("entity"));
+
+        TableColumn codeCol = new TableColumn();
+        codeCol.setText("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory("code"));
+
+        TableColumn yearCol = new TableColumn();
+        yearCol.setText("Year");
+        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
+
+        TableColumn schizophreniaCol = new TableColumn();
+        schizophreniaCol.setText("Schizonphrenia");
+        schizophreniaCol.setMinWidth(200);
+        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Schizophrenia - Sex: Both - Age: Age-standardized (Percent)"));
+
+        TableColumn bipolarCol = new TableColumn();
+        bipolarCol.setText("Bipolar Disorders");
+        bipolarCol.setMinWidth(200);
+        bipolarCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Bipolar disorder - Sex: Both - Age: Age-standardized (Percent)"));
+        
+        TableColumn eatingCol = new TableColumn();
+        eatingCol.setText("Eating Disorders");
+        eatingCol.setMinWidth(200);
+        eatingCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Eating disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        
+        TableColumn anxietyCol = new TableColumn();
+        anxietyCol.setText("Anxiety Disorders");
+        anxietyCol.setMinWidth(200);
+        anxietyCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        
+        TableColumn drugCol = new TableColumn();
+        drugCol.setText("Drug use Disorders");
+        drugCol.setMinWidth(200);
+        drugCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Drug use disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        
+        TableColumn depressCol = new TableColumn();
+        depressCol.setText("Depressive disorders");
+        depressCol.setMinWidth(200);
+        depressCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Depressive disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        
+        TableColumn alcoholCol = new TableColumn();
+        alcoholCol.setText("Alcohol use Disorders");
+        alcoholCol.setMinWidth(200);
+        alcoholCol.setCellValueFactory(new PropertyValueFactory("Prevalence - Alcohol use disorders - Sex: Both - Age: Age-standardized (Percent)"));
+        
         final TableView tableView = new TableView();
         tableView.setItems(data);
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+        tableView.getColumns().addAll(entityCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
 
