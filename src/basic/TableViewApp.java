@@ -1,5 +1,9 @@
 package basic;
 
+
+import java.io.*;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,13 +32,27 @@ import javafx.stage.Stage;
  */
 public class TableViewApp extends Application {
 
-    public Parent createContent() {
-        final ObservableList<Pervalence> data = FXCollections.observableArrayList(
-                new Pervalence("qwq", "code", "1002", 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
+    public Parent createContent() throws IOException{
 
-        TableColumn entityCol = new TableColumn();
-        entityCol.setText("Entity");
-        entityCol.setCellValueFactory(new PropertyValueFactory("entity"));
+        
+
+        ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
+        BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+        br.readLine();
+        String data;
+        data = br.readLine();
+        while(data != null){
+            var split = data.split(",");
+            pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
+            data = br.readLine();
+        }
+        br.close();
+
+        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
+
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
 
         TableColumn codeCol = new TableColumn();
         codeCol.setText("Code");
@@ -80,10 +98,11 @@ public class TableViewApp extends Application {
         alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
         
         final TableView tableView = new TableView();
-        tableView.setItems(data);
-        tableView.getColumns().addAll(entityCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
+        tableView.setItems(aryList);
+        tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
+
 
     @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
@@ -98,4 +117,3 @@ public class TableViewApp extends Application {
         launch(args);
     }
 }
-© 2021 GitHub, Inc.
