@@ -2,6 +2,8 @@ package basic;
 
 
 import java.io.*;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,8 +33,25 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() throws IOException{
+
+        
+
+        ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
+        try{
+          BufferedReader br = new BufferedReader(new FileReader("basic/PervalenceByDisorders.csv"));
+          br.readLine();
+          String data;
+          while((data = br.readLine())!=null){
+            var split = data.split(",");
+            pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
+          }
+          br.close();
+          } catch (Exception e) {
+        
+          }
+
         final ObservableList<Pervalence> data = FXCollections.observableArrayList(
-                new Pervalence("qwq", "code", 1002, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
+            pervalenceName);
 
         TableColumn entityCol = new TableColumn();
         entityCol.setText("Entity");
