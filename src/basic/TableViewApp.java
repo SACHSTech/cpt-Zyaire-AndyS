@@ -48,8 +48,7 @@ public class TableViewApp extends Application {
         }
         br.close();
 
-        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(
-            pervalenceName);
+        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
 
         TableColumn entityCol = new TableColumn();
         entityCol.setText("Entity");
