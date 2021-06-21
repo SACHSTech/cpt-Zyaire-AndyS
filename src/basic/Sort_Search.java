@@ -42,21 +42,14 @@ public class Sort_Search{
         return deathData;
     }
     
-    public static Integer avgByYear(int year) {
-        ObservableList<Pervalence> deathData = searchYear(year);
+    public static Integer avgForSchizophrenia() {
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
-        Pervalence p;
-        int avgRounded;
-        String country;
 
+        int avgRounded; 
         for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            p = deathData.get(intCount);
-            country = p.getEntity();
-
-            if (!country.equals("World") && !country.equals("Asia") && !country.equals("Europe") && !country.equals("Africa") && !country.equals("North America") && !country.equals("Latin America")) {
-                total = total + (deathData.get(intCount).getSchizophrenia()) + ;
-            }
+            total = total + (deathData.get(intCount).getSchizophrenia());
         }
 
         avg = total / deathData.size();
