@@ -29,5 +29,18 @@ public class Sort_Search{
         }
         return data;
     }
-    
+    public static ObservableList <Pervalence> byEntity(String entity) {
+        ObservableList<Pervalence> data = FXCollections.observableArrayList();
+
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+
+            if (entity.equalsIgnoreCase(list.get(intCount).getEntity())) {
+                data.add(list.get(intCount));
+            }
+
+        }
+        return data;
+    }
+
+
 }
