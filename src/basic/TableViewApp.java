@@ -30,7 +30,7 @@ public class TableViewApp extends Application {
 
     public Parent createContent() {
         final ObservableList<Pervalence> data = FXCollections.observableArrayList(
-                new Pervalence("qwq", "code", "1002", 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
+                new Pervalence("qwq", "code", 1002, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7));
 
         TableColumn entityCol = new TableColumn();
         entityCol.setText("Entity");
