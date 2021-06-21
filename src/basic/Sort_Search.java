@@ -4,9 +4,10 @@ import java.io.*;
 import basic.Pervalence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.ArrayList;
 
 public class Sort_Search{
-    private static ObservableList<Pervalence> list;
+    private static ArrayList<Pervalence> list;
     
     public static ObservableList <Pervalence> Everything() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
@@ -30,12 +31,12 @@ public class Sort_Search{
         return deathData;
     }
 
-    public static ObservableList <Pervalence> byEntity(String entity) {
+    public static ObservableList <Pervalence> byEntity(String coutunry) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
 
-            if (entity.equalsIgnoreCase(list.get(intCount).getEntity())) {
+            if (coutunry.equalsIgnoreCase(list.get(intCount).getCountry())) {
                 deathData.add(list.get(intCount));
             }
 
@@ -151,4 +152,5 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
+    
 }
