@@ -33,6 +33,7 @@ public class Main extends Application {
     private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
     private TextField textField = new TextField();
     private TableView<Pervalence> table = new TableView<>();
+    //private TableView<Pervalence> dataTable = new TableView<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +48,7 @@ public class Main extends Application {
         cb.getItems().addAll("Dog", "Cat", "Horse");
         cb.getSelectionModel().selectFirst();
 
-        //button to open window to the pie chart
+        //button to open the line chart
         Button chartBtn = new Button();
         chartBtn.setText("Chart");
         chartBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -58,18 +59,30 @@ public class Main extends Application {
             }
         });
 
-        //button to close window
-        Button closeBtn = new Button();
-        closeBtn.setText("Close");
-        closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+        //button to open the other chart
+        Button otherChart = new Button();
+        otherChart.setText("Another Chart");
+        otherChart.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.close();
+                System.out.println("bar chart ??");
+            }
+        });
+
+        //button to do the merge sort
+        Button mergeBtn = new Button();
+        mergeBtn.setText("Merge Sort");
+        mergeBtn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("merge merge");
             }
         });
 
         readFile();
+        
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");
         countryCol.setCellValueFactory(new PropertyValueFactory("country"));
@@ -120,15 +133,13 @@ public class Main extends Application {
         table.setItems(pervList);
         table.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
 
-
-        HBox header = new HBox();
+        HBox header = new HBox(10);
         header.setAlignment(Pos.TOP_CENTER);
-        header.setSpacing(10);
         header.getChildren().addAll(label, textField, cb);
 
         HBox bottom = new HBox(150);
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(chartBtn, closeBtn);
+        bottom.getChildren().addAll(chartBtn, mergeBtn, otherChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
@@ -156,4 +167,5 @@ public class Main extends Application {
         br.close();
 
     }
+
 }
