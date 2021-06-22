@@ -1,7 +1,6 @@
 package basic;
 
 import java.io.*;
-import java.lang.FdLibm.Pow;
 
 import basic.Pervalence;
 import javafx.collections.FXCollections;

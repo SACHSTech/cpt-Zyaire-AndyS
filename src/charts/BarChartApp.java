@@ -10,8 +10,11 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
- 
- 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import java.util.ArrayList;
+
 /**
  * A chart that displays rectangular bars with heights indicating data values
  * for categories. Used for displaying information when at least one axis has
@@ -23,7 +26,11 @@ public class BarChartApp extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
  
-    
+    public Parent BarChartSettings(Stage primaryStage) {
+      VBox layout = new VBox();
+      ArrayList<Pervalence> list = Sort_Search.getList();
+      return layout;
+    }
     public Parent createBarChart() {
         String[] years = {"2007", "2008", "2009"};
         xAxis = new CategoryAxis();
@@ -49,7 +56,7 @@ public class BarChartApp extends Application {
     }
  
     @Override public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(createContent()));
+        primaryStage.setScene(new Scene(createBarChart()));
         primaryStage.show();
     }
  
