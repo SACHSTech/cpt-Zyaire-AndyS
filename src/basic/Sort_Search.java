@@ -1,6 +1,8 @@
 package basic;
 
 import java.io.*;
+import java.lang.FdLibm.Pow;
+
 import basic.Pervalence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +11,19 @@ import java.util.ArrayList;
 public class Sort_Search{
     private static ArrayList<Pervalence> list;
     
+    public static ArrayList <Pervalence> getList() {
+        return list;
+    }
+    public static ObservableList convert(ArrayList list) {
+        ObservableList deathData = FXCollections.observableArrayList();
+        int intCount;
+
+        for (intCount = 0; intCount < list.size(); intCount ++) {
+            deathData.add(list.get(intCount));
+        }
+
+        return deathData;
+    }
     public static ObservableList <Pervalence> Everything() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         int intCount;
@@ -152,5 +167,14 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
-    
+    public static Integer count() {
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
+        double Numof  = 0;
+        int avgRounded; 
+        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
+            
+        }
+
+        return count
+
 }
