@@ -1,4 +1,4 @@
-package basic;
+package CPT;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
@@ -155,7 +155,7 @@ public class Main extends Application {
      * @throws FIOException
      */
     private void readFile() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+        BufferedReader br = new BufferedReader(new FileReader("src/CPT/PervalenceByDisorders.csv"));
         br.readLine();
         String data;
         data = br.readLine();
