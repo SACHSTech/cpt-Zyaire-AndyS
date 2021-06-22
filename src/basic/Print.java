@@ -1,5 +1,5 @@
 package basic;
-
+import basic.BarChartApp;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
@@ -12,8 +12,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import java.util.HashMap;
 
-public class Print{
+public class Print extends Application{
     public static void main(String[] args) throws IOException{
       ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
       BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
@@ -27,6 +28,15 @@ public class Print{
       }
       br.close();
       Sort_Search.setList(pervalenceName);
-      createContent
+      
+      launch(args);
+
+
+    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(new Scene(BarChartApp.createContent("Depression", "Canada", "China", "Angola", 2015, primaryStage), 300, 250));
+        primaryStage.setTitle("Death From Mental Illness");
+        primaryStage.show();
     }
 }
