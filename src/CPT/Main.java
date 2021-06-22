@@ -2,10 +2,12 @@ package CPT;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.FileReader;
@@ -142,7 +144,7 @@ public class Main extends Application {
         header.setAlignment(Pos.TOP_CENTER);
         header.getChildren().addAll(label, textField, cb);
 
-        HBox bottom = new HBox(150);
+        HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
         bottom.getChildren().addAll(chartBtn, mergeBtn, otherChart);
         
@@ -170,6 +172,38 @@ public class Main extends Application {
             data = br.readLine();
         }
         br.close();
+    }
+    public static Parent lineChart(String country, Stage primaryStage) {
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<String, Long> chart = new LineChart(xAxis, yAxis);
+        ArrayList<Pervalence> cData = Methods.listByCountry(country);
+        Pervalence c;
+
+        chart.setTitle(country);
+        xAxis.setLabel("Year");
+        yAxis.setLabel("Population");
+
+        XYChart.Series <String, Long> data = new XYChart.Series <String, Long>();
+        data.setName(country);
+
+        for (int intCount = 0; intCount < cData.size(); intCount ++) {
+            c = cData.get(intCount);
+            data.getData().add(new XYChart.Data <String, Long> (c.getYear(), Long.parseLong(c.getPopulation())));
+        }
+
+        chart.getData().add(data);
+
+        Button back = new Button("Back to Menu");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(mainMenu(primaryStage), 300, 250)));
+
+        Button Settings = new Button("Settings");
+        Settings.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
+
+        VBox box = new VBox();
+        box.getChildren().addAll(chart, Settings, back);
+
+        return box;
     }
 
 }
