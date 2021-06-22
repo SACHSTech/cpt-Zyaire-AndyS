@@ -195,6 +195,27 @@ public class Sort_Search{
         }
         return min;
     }
+    public static double SDForAnxiety() {
+        double avg;
+        double squared;
+        double sum = 0;
+        double meanSum;
+        double deviation;
+
+        avg = Sort_Search.avgForAnxiety();
+        
+        for (int count = 0; count < list.size(); count++) {
+            squared = Math.pow((list.get(count).getAnxiety() - avg), 2);
+            
+            sum = sum + squared;
+        }
+
+        meanSum = sum / list.size();
+
+        deviation = Math.round(Math.sqrt(meanSum) * 100.0) / 100.0;
+
+        return deviation;
+    }
     public ArrayList getSortedArray() {
         return inputList;
     }
