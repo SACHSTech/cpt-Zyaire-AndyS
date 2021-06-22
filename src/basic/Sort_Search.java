@@ -12,19 +12,19 @@ import java.util.HashMap;
 public class Sort_Search{
 
     private static ArrayList<Pervalence> list;
-    
+    private static ArrayList<Pervalence> inputList;
     public static ArrayList <Pervalence> getList() {
         return list;
     }
     public static void setList(ArrayList<Pervalence> newList) {
         list = newList;
     }
-    public static ObservableList convert(ArrayList list) {
+    public static ObservableList convert(ArrayList inputList) {
         ObservableList deathData = FXCollections.observableArrayList();
         int intCount;
 
         for (intCount = 0; intCount < list.size(); intCount ++) {
-            deathData.add(list.get(intCount));
+            deathData.add(inputList.get(intCount));
         }
 
         return deathData;
@@ -183,5 +183,56 @@ public class Sort_Search{
         }
         return count;
     }
+    public ArrayList getSortedArray() {
+        return inputList;
+    }
+    public static void setMSortArray(ArrayList<Pervalence> input) {
+        inputList = input;
+    }
+    private static void divide(int startIndex,int endIndex) {
 
+        if (startIndex < endIndex && (endIndex - startIndex) >= 1) {
+            int mid = (endIndex + startIndex) / 2;
+            divide(startIndex, mid);
+            divide(mid + 1, endIndex);        
+            
+            merger(startIndex,mid,endIndex);            
+        }
+        private static void merger(int startIndex,int midIndex,int endIndex) {
+
+            ArrayList <Pervalence> mergedSortedData = new ArrayList<Pervalence>();
+            
+            int leftIndex = startIndex;
+            int rightIndex = midIndex+1;
+            
+            while (leftIndex <= midIndex && rightIndex <= endIndex) {
+                if ((inputList.get(leftIndex).getYear()) <= (inputList.get(rightIndex).getYear())) {
+                    mergedSortedData.add(inputList.get(rightIndex));
+                    rightIndex++;
+    
+                } else {
+                    mergedSortedData.add(inputList.get(leftIndex));
+                    leftIndex++;
+    
+                }
+            }       
+            
+            while (leftIndex <= midIndex) {
+                mergedSortedData.add(inputList.get(leftIndex));
+                leftIndex++;
+            }
+            
+            while (rightIndex <= endIndex) {
+                mergedSortedData.add(inputList.get(rightIndex));
+                rightIndex++;
+            }
+            
+            int i = 0;
+            int j = startIndex;
+    
+            while (i < mergedSortedData.size()) {
+                inputList.set(j, mergedSortedData.get(i++));
+                j++;
+            }
+        }
 }
