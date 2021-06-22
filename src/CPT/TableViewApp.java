@@ -1,9 +1,10 @@
-package basic;
+package CPT;
 
 
 import java.io.*;
 import java.util.ArrayList;
 
+import basic.Pervalence;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

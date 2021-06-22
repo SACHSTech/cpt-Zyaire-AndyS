@@ -1,11 +1,11 @@
 /* ....Show License.... */
-package basic;
+package CPT;
  
-import basic.Pervalence;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -55,34 +55,34 @@ public class BarChartApp{
         d3.setName(data3.getCountry());
 
         if (disorder.equalsIgnoreCase("schizophrenia")){
-            d1.getData().add(new XYChart.Data(p1,data1.getSchizophrenia());
-            d2.getData().add(new XYChart.Data(p2,data2.getSchizophrenia());
-            d3.getData().add(new XYChart.Data(p3,data3.getSchizophrenia());
+            d1.getData().add(new XYChart.Data(p1,data1.getSchizophrenia()));
+            d2.getData().add(new XYChart.Data(p2,data2.getSchizophrenia()));
+            d3.getData().add(new XYChart.Data(p3,data3.getSchizophrenia()));
 
         } else if(disorder.equalsIgnoreCase("Bipolar")){
-            d1.getData().add(new XYChart.Data(p1,data1.getBipolar());
-            d2.getData().add(new XYChart.Data(p2,data2.getBipolar());
-            d3.getData().add(new XYChart.Data(p3,data3.getBipolar());
+            d1.getData().add(new XYChart.Data(p1,data1.getBipolar()));
+            d2.getData().add(new XYChart.Data(p2,data2.getBipolar()));
+            d3.getData().add(new XYChart.Data(p3,data3.getBipolar()));
         } else if(disorder.equalsIgnoreCase("Eating")){
-            d1.getData().add(new XYChart.Data(p1,data1.getEating());
-            d2.getData().add(new XYChart.Data(p2,data2.getEating());
-            d3.getData().add(new XYChart.Data(p3,data3.getEating());
+            d1.getData().add(new XYChart.Data(p1,data1.getEating()));
+            d2.getData().add(new XYChart.Data(p2,data2.getEating()));
+            d3.getData().add(new XYChart.Data(p3,data3.getEating()));
         } else if(disorder.equalsIgnoreCase("Anxiety")){
-            d1.getData().add(new XYChart.Data(p1,data1.getAnxiety());
-            d2.getData().add(new XYChart.Data(p2,data2.getAnxiety());
-            d3.getData().add(new XYChart.Data(p3,data3.getAnxiety());
+            d1.getData().add(new XYChart.Data(p1,data1.getAnxiety()));
+            d2.getData().add(new XYChart.Data(p2,data2.getAnxiety()));
+            d3.getData().add(new XYChart.Data(p3,data3.getAnxiety()));
         } else if(disorder.equalsIgnoreCase("Drug")){
-            d1.getData().add(new XYChart.Data(p1,data1.getDrug());
-            d2.getData().add(new XYChart.Data(p2,data2.getDrug());
-            d3.getData().add(new XYChart.Data(p3,data3.getDrug());
+            d1.getData().add(new XYChart.Data(p1,data1.getDrug()));
+            d2.getData().add(new XYChart.Data(p2,data2.getDrug()));
+            d3.getData().add(new XYChart.Data(p3,data3.getDrug()));
         } else if(disorder.equalsIgnoreCase("Depression")){
             d1.getData().add(new XYChart.Data(p1, data1.getDepress()));
             d2.getData().add(new XYChart.Data(p2, data2.getDepress()));
             d3.getData().add(new XYChart.Data(p3, data3.getDepress()));
         } else if(disorder.equalsIgnoreCase("Alcohol")){
-            d1.getData().add(new XYChart.Data(p1,data1.getAlcohol());
-            d2.getData().add(new XYChart.Data(p2,data2.getAlcohol());
-            d3.getData().add(new XYChart.Data(p3,data3.getAlcohol());
+            d1.getData().add(new XYChart.Data(p1,data1.getAlcohol()));
+            d2.getData().add(new XYChart.Data(p2,data2.getAlcohol()));
+            d3.getData().add(new XYChart.Data(p3,data3.getAlcohol()));
         } else{
             d1.getData().add(null);
             d2.getData().add(null);           

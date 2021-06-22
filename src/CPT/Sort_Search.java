@@ -1,8 +1,7 @@
-package basic;
+package CPT;
 
 import java.io.*;
 
-import basic.Pervalence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
