@@ -168,6 +168,7 @@ public class Sort_Search{
         return avgRounded;
     }
     public static Integer count() {
+        int count; 
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double Numof  = 0;
         int avgRounded; 
@@ -175,6 +176,7 @@ public class Sort_Search{
             
         }
 
-        return count
+        return count;
+    }
 
 }
