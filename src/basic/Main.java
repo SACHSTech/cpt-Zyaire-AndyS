@@ -33,6 +33,7 @@ public class Main extends Application {
     private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
     private TextField textField = new TextField();
     private TableView<Pervalence> table = new TableView<>();
+    //private TableView<Pervalence> dataTable = new TableView<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +48,7 @@ public class Main extends Application {
         cb.getItems().addAll("Dog", "Cat", "Horse");
         cb.getSelectionModel().selectFirst();
 
-        //button to open window to the pie chart
+        //button to open the line chart
         Button chartBtn = new Button();
         chartBtn.setText("Chart");
         chartBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -58,81 +59,93 @@ public class Main extends Application {
             }
         });
 
-        //button to close window
-        Button closeBtn = new Button();
-        closeBtn.setText("Close");
-        closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+        //button to open the other chart
+        Button otherChart = new Button();
+        otherChart.setText("Another Chart");
+        otherChart.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.close();
+                System.out.println("bar chart ??");
+            }
+        });
+
+        //button to do the merge sort
+        Button mergeBtn = new Button();
+        mergeBtn.setText("Merge Sort");
+        mergeBtn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("merge merge");
             }
         });
 
         readFile();
-        TableColumn<Pervalence, String> countryCol = new TableColumn<>("Country");
-        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
 
-        TableColumn<Pervalence, String> codeCol = new TableColumn<>("Code");
-        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        TableColumn codeCol = new TableColumn();
+        codeCol.setText("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory("code"));
 
-        TableColumn<Pervalence, Integer> yearCol = new TableColumn<>("Year");
-        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        TableColumn yearCol = new TableColumn();
+        yearCol.setText("Year");
+        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
 
-        TableColumn<Pervalence, Double> schizonphreniaCol = new TableColumn<>("Schizonphrenia");
-        schizonphreniaCol.setMinWidth(150);
-        schizonphreniaCol.setCellValueFactory(new PropertyValueFactory<>("schizonphrenia"));
+        TableColumn schizophreniaCol = new TableColumn();
+        schizophreniaCol.setText("Schizonphrenia");
+        schizophreniaCol.setMinWidth(150);
+        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("schizophrenia"));
 
-        TableColumn<Pervalence, Double> bipolarCol = new TableColumn<>("Bipolar");
+        TableColumn bipolarCol = new TableColumn();
+        bipolarCol.setText("Bipolar Disorders");
         bipolarCol.setMinWidth(150);
-        bipolarCol.setCellValueFactory(new PropertyValueFactory<>("bipolar"));
-
-        TableColumn<Pervalence, Double> eatingCol = new TableColumn<>("Eating");
+        bipolarCol.setCellValueFactory(new PropertyValueFactory("bipolar"));
+        
+        TableColumn eatingCol = new TableColumn();
+        eatingCol.setText("Eating Disorders");
         eatingCol.setMinWidth(150);
-        eatingCol.setCellValueFactory(new PropertyValueFactory<>("eating"));
-
-        TableColumn<Pervalence, Double> anxietyCol = new TableColumn<>("Anxiety");
+        eatingCol.setCellValueFactory(new PropertyValueFactory("eating"));
+        
+        TableColumn anxietyCol = new TableColumn();
+        anxietyCol.setText("Anxiety Disorders");
         anxietyCol.setMinWidth(150);
-        anxietyCol.setCellValueFactory(new PropertyValueFactory<>("anxiety"));
-
-        TableColumn<Pervalence, Double> drugCol = new TableColumn<>("Drug");
+        anxietyCol.setCellValueFactory(new PropertyValueFactory("anxiety"));
+        
+        TableColumn drugCol = new TableColumn();
+        drugCol.setText("Drug use Disorders");
         drugCol.setMinWidth(150);
-        drugCol.setCellValueFactory(new PropertyValueFactory<>("drug"));
-
-        TableColumn<Pervalence, Double> depressCol = new TableColumn<>("Depress");
+        drugCol.setCellValueFactory(new PropertyValueFactory("drug"));
+        
+        TableColumn depressCol = new TableColumn();
+        depressCol.setText("Depressive disorders");
         depressCol.setMinWidth(150);
-        depressCol.setCellValueFactory(new PropertyValueFactory<>("depress"));
-
-        TableColumn<Pervalence, Double> alcoholCol = new TableColumn<>("Alcohol");
+        depressCol.setCellValueFactory(new PropertyValueFactory("depress"));
+        
+        TableColumn alcoholCol = new TableColumn();
+        alcoholCol.setText("Alcohol use Disorders");
         alcoholCol.setMinWidth(150);
-        alcoholCol.setCellValueFactory(new PropertyValueFactory<>("alcohol"));
+        alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
+        
+        table.setItems(pervList);
+        table.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
 
-        table.getColumns().addAll(countryCol, 
-                                    codeCol,
-                                    yearCol,
-                                    schizonphreniaCol, 
-                                    bipolarCol, 
-                                    eatingCol, 
-                                    anxietyCol,
-                                    drugCol,
-                                    depressCol,
-                                    alcoholCol);
-
-
-        HBox header = new HBox();
+        HBox header = new HBox(10);
         header.setAlignment(Pos.TOP_CENTER);
-        header.setSpacing(10);
         header.getChildren().addAll(label, textField, cb);
 
         HBox bottom = new HBox(150);
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(chartBtn, closeBtn);
+        bottom.getChildren().addAll(chartBtn, mergeBtn, otherChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
         vbox.getChildren().addAll(header, table, bottom);
 
-        primaryStage.setScene(new Scene(vbox, 1320, 600));
+        primaryStage.setScene(new Scene(vbox, 1290, 600));
         primaryStage.show();     
     }
     
@@ -154,4 +167,5 @@ public class Main extends Application {
         br.close();
 
     }
+
 }
