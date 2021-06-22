@@ -13,6 +13,7 @@ public class Sort_Search{
 
     private static ArrayList<Pervalence> list;
     private static ArrayList<Pervalence> inputList;
+
     public static ArrayList <Pervalence> getList() {
         return list;
     }
@@ -76,99 +77,92 @@ public class Sort_Search{
     }
     
     public static Integer avgForSchizophrenia() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
 
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getSchizophrenia());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getSchizophrenia());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
 
     public static Integer avgForBipolar() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getBipolar());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getBipolar());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
 
     public static Integer avgForEating() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getEating());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getEating());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
 
     public static Integer avgForAnxiety() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getAnxiety());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getAnxiety());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
 
     public static Integer avgForDrug() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getDrug());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getDrug());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
 
     public static Integer avgForDepress() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getDepress());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getDepress());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
     public static Integer avgForAlcohol() {
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         double total = 0;
         double avg;
         int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            total = total + (deathData.get(intCount).getAlcohol());
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+            total = total + (list.get(intCount).getAlcohol());
         }
 
-        avg = total / deathData.size();
+        avg = total / list.size();
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
@@ -182,6 +176,24 @@ public class Sort_Search{
             }
         }
         return count;
+    }
+    public static double MaxForDrug() {
+        double max = 0;
+        for (int count = 0; count < list.size(); count++) {
+            if (list.get(count).getDrug() >= max) {
+                max = Math.round(list.get(count).getDrug() * 100.0) / 100.0;
+            }
+        }
+        return max;
+    }
+    public static double MinForAlcohol() {
+        double min = 0;
+        for (int count = 0; count < list.size(); count++) {
+            if (list.get(count).getAlcohol() <= min) {
+                min = Math.round(list.get(count).getAlcohol() * 100.0) / 100.0;
+            }
+        }
+        return min;
     }
     public ArrayList getSortedArray() {
         return inputList;

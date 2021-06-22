@@ -48,7 +48,8 @@ public class TableViewApp extends Application {
         br.close();
     
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
-
+        Sort_Search.setList(pervalenceName);
+        System.out.println(Sort_Search.MaxForDrug());
 
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");
