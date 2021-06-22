@@ -1,3 +1,4 @@
+
 /* ....Show License.... */
 package basic;
  
@@ -10,16 +11,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.time.Year;
-import java.util.ArrayList;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+ 
+ 
 /**
  * A chart that displays rectangular bars with heights indicating data values
  * for categories. Used for displaying information when at least one axis has
@@ -31,12 +24,11 @@ public class BarChartApp extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
  
-    public Parent createBarChart(Pervalence pervalence, int year, Stage primaryStage) {
+    public Parent createContent() {
         String[] years = {"2007", "2008", "2009"};
-        ArrayList<String> years = new ArrayList<String>();
-        CategoryAxis xAxis = new CategoryAxis();
+        xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        NumberAxis yAxis = new NumberAxis("The Number of Death", 0.0d, 3000.0d, 1000.0d);
+        yAxis = new NumberAxis("Units Sold", 0.0d, 3000.0d, 1000.0d);
         ObservableList<BarChart.Series> barChartData =
             FXCollections.observableArrayList(
               new BarChart.Series("Apples", FXCollections.observableArrayList(
@@ -57,7 +49,7 @@ public class BarChartApp extends Application {
     }
  
     @Override public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(createBarChart()));
+        primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
  
