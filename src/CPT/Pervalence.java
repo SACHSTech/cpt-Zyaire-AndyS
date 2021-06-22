@@ -1,4 +1,4 @@
-package basic;
+package CPT;
 
 public class Pervalence {
 
