@@ -2,10 +2,12 @@ package CPT;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.FileReader;
@@ -54,15 +56,16 @@ public class Main extends Application {
         cb.getSelectionModel().selectFirst();
 
         //button to open the line chart
-        Button chartBtn = new Button();
-        chartBtn.setText("Chart");
-        chartBtn.setOnAction(new EventHandler<ActionEvent>() {
+        Button lineChart = new Button();
+        lineChart.setText("Another Chart");
+        lineChart.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Yoyo");
+                System.out.println("bar chart ??");
             }
         });
+ 
 
         //button to open the other chart
         Button otherChart = new Button();
@@ -142,9 +145,9 @@ public class Main extends Application {
         header.setAlignment(Pos.TOP_CENTER);
         header.getChildren().addAll(label, textField, cb);
 
-        HBox bottom = new HBox(150);
+        HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(chartBtn, mergeBtn, otherChart);
+        bottom.getChildren().addAll(lineChart, mergeBtn, otherChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
@@ -171,38 +174,4 @@ public class Main extends Application {
         }
         br.close();
     }
-
-    public static void lineChart(String country, Stage primaryStage){
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        LineChart<String, Double> chart = new LineChart(xAxis, yAxis);
-        ArrayList<Pervalence> cData = Methods.listByCountry(country);
-        Pervalence c;
-
-        chart.setTitle(country);
-        xAxis.setLabel("Year");
-        yAxis.setLabel("Population");
-
-        XYChart.Series <String, Long> data = new XYChart.Series <String, Long>();
-        data.setName(country);
-
-        for (int intCount = 0; intCount < cData.size(); intCount ++) {
-            c = cData.get(intCount);
-            data.getData().add(new XYChart.Data <String, Long> (c.getYear(), Long.parseLong(c.getPopulation())));
-        }
-
-        chart.getData().add(data);
-
-        Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(mainMenu(primaryStage), 300, 250)));
-
-        Button Settings = new Button("Settings");
-        Settings.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
-
-        VBox box = new VBox();
-        box.getChildren().addAll(chart, Settings, back);
-
-        return box;
-    }
-
 }

@@ -33,9 +33,6 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() throws IOException{
-
-        
-
         ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
         BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
         br.readLine();
