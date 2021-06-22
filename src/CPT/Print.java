@@ -1,5 +1,4 @@
-package basic;
-import basic.BarChartApp;
+package CPT;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 public class Print extends Application{
     public static void main(String[] args) throws IOException{
       ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
-      BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+      BufferedReader br = new BufferedReader(new FileReader("src/CPT/PervalenceByDisorders.csv"));
       br.readLine();
       String data;
       data = br.readLine();

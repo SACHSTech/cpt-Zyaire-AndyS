@@ -4,6 +4,8 @@ package CPT;
 import java.io.*;
 import java.util.ArrayList;
 
+import basic.Pervalence;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +35,7 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() throws IOException{
+
         ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
         BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
         br.readLine();
