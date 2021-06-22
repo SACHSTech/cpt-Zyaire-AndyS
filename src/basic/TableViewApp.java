@@ -46,9 +46,9 @@ public class TableViewApp extends Application {
             data = br.readLine();
         }
         br.close();
-
+        Sort_Search.
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
-
+        Sort_Search.setList(pervalenceName);
 
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");

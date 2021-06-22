@@ -5,13 +5,19 @@ import java.io.*;
 import basic.Pervalence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Sort_Search{
+
     private static ArrayList<Pervalence> list;
     
     public static ArrayList <Pervalence> getList() {
         return list;
+    }
+    public static void setList(ArrayList<Pervalence> newList) {
+        list = newList;
     }
     public static ObservableList convert(ArrayList list) {
         ObservableList deathData = FXCollections.observableArrayList();
@@ -45,12 +51,12 @@ public class Sort_Search{
         return deathData;
     }
 
-    public static ObservableList <Pervalence> byEntity(String coutunry) {
+    public static ObservableList <Pervalence> byEntity(String country) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
 
-            if (coutunry.equalsIgnoreCase(list.get(intCount).getCountry())) {
+            if (country.equalsIgnoreCase(list.get(intCount).getCountry())) {
                 deathData.add(list.get(intCount));
             }
 
@@ -167,14 +173,14 @@ public class Sort_Search{
         return avgRounded;
     }
     public static Integer count() {
-        int count; 
-        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
-        double Numof  = 0;
-        int avgRounded; 
-        for (int intCount = 0; intCount < deathData.size(); intCount ++) {
-            
+        int count = 0; 
+        HashMap <String, Integer> countryHash = new HashMap<>();
+        for (Pervalence item: list) {
+            if (!countryHash.containsKey(item.getCountry())) {
+                countryHash.put(item.getCountry(), 1);
+                count++;
+            }
         }
-
         return count;
     }
 
