@@ -1,5 +1,9 @@
 package basic;
 
+
+import java.io.*;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,29 +32,63 @@ import javafx.stage.Stage;
  */
 public class TableViewApp extends Application {
 
-    public Parent createContent() {
-        final ObservableList<Person> data = FXCollections.observableArrayList(
-                new Person("Jacob", "Smith", "jacob.smith@example.com"),
-                new Person("Sue", "Jones", "sue@example.com"),
-                new Person("Ethan", "Fox", "ethan.fox@example.com"),
-                new Person("Emma", "Jones", "emma.jones@example.com"),
-                new Person("Mike", "Brown", "mike.brown@example.com"));
+    public Parent createContent() throws IOException{
+        
+        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
+    
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
 
-        TableColumn firstNameCol = new TableColumn();
-        firstNameCol.setText("First");
-        firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-        TableColumn lastNameCol = new TableColumn();
-        lastNameCol.setText("Last");
-        lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-        TableColumn emailCol = new TableColumn();
-        emailCol.setText("Email");
-        emailCol.setMinWidth(200);
-        emailCol.setCellValueFactory(new PropertyValueFactory("email"));
+        TableColumn codeCol = new TableColumn();
+        codeCol.setText("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory("code"));
+
+        TableColumn yearCol = new TableColumn();
+        yearCol.setText("Year");
+        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
+
+        TableColumn schizophreniaCol = new TableColumn();
+        schizophreniaCol.setText("Schizonphrenia");
+        schizophreniaCol.setMinWidth(200);
+        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("schizophrenia"));
+
+        TableColumn bipolarCol = new TableColumn();
+        bipolarCol.setText("Bipolar Disorders");
+        bipolarCol.setMinWidth(200);
+        bipolarCol.setCellValueFactory(new PropertyValueFactory("bipolar"));
+        
+        TableColumn eatingCol = new TableColumn();
+        eatingCol.setText("Eating Disorders");
+        eatingCol.setMinWidth(200);
+        eatingCol.setCellValueFactory(new PropertyValueFactory("eating"));
+        
+        TableColumn anxietyCol = new TableColumn();
+        anxietyCol.setText("Anxiety Disorders");
+        anxietyCol.setMinWidth(200);
+        anxietyCol.setCellValueFactory(new PropertyValueFactory("anxiety"));
+        
+        TableColumn drugCol = new TableColumn();
+        drugCol.setText("Drug use Disorders");
+        drugCol.setMinWidth(200);
+        drugCol.setCellValueFactory(new PropertyValueFactory("drug"));
+        
+        TableColumn depressCol = new TableColumn();
+        depressCol.setText("Depressive disorders");
+        depressCol.setMinWidth(200);
+        depressCol.setCellValueFactory(new PropertyValueFactory("depress"));
+        
+        TableColumn alcoholCol = new TableColumn();
+        alcoholCol.setText("Alcohol use Disorders");
+        alcoholCol.setMinWidth(200);
+        alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
+        
         final TableView tableView = new TableView();
-        tableView.setItems(data);
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+        tableView.setItems(aryList);
+        tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
+    
 
     @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
