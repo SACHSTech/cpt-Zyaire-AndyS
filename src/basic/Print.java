@@ -1,53 +1,32 @@
 package basic;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.*;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 public class Print{
-    public static void main(String[] args) {
-        Sort_Search.Everything();
-       /*  public Parent BarChartSettings(Stage primaryStage) {
-            VBox layout = new VBox();
-            ArrayList<Pervalence> list = Sort_Search.getList();
-            String country;
-              String prevC = "";
-              Pervalence pervalence;
-              ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
-              c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
-      
-              ChoiceBox<Pervalence> c2 = new ChoiceBox <Pervalence>();
-              c2.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
-      
-              ChoiceBox<Pervalence> c3 = new ChoiceBox <Pervalence>();
-              c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
-      
-              TextField startY = new TextField("What year?");
-              startY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-      
-              TextField endY = new TextField("Which disorder?");
-              endY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-      
-              Button create = new Button("Create!");
-              Label settingLabel = new Label("BarChart Settings");
-      
-              for (int intCount = 0; intCount < list.size(); intCount++) {
-                pervalence = list.get(intCount);
-                country = pervalence.getCountry();
-      
-                  if (!country.equals(prevC)) {
-                      c1.getItems().add(pervalence);
-                      c2.getItems().add(pervalence);
-                      c3.getItems().add(pervalence);
-                  }
-      
-                  prevC = country;
-              }
-      
-              create.setOnAction(e -> primaryStage.setScene(new Scene(createBarChart(startY.getText(), Year.getText(),
-                      c1.getValue(), c2.getValue(), c3.getValue(), primaryStage))));
-      
-              Button back = new Button("Back to Menu");
-              back.setOnAction(e -> primaryStage.setScene(new Scene(mainMenu(primaryStage), 300, 250)));
-      
-              layout.getChildren().addAll(settingLabel, c1, c2, c3, startY, endY, create, back);
-              layout.setAlignment(Pos.CENTER);
-      
-              return layout; */
+    public static void main(String[] args) throws IOException{
+      ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
+      BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+      br.readLine();
+      String data;
+      data = br.readLine();
+      while(data != null){
+          var split = data.split(",");
+          pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
+          data = br.readLine();
+      }
+      br.close();
+      Sort_Search.setList(pervalenceName);
+      createContent
     }
 }
