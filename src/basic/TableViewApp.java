@@ -49,7 +49,7 @@ public class TableViewApp extends Application {
     
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
         Sort_Search.setList(pervalenceName);
-        System.out.println(Sort_Search.SDForAnxiety());
+        System.out.println(Sort_Search.avgForAlcohol());
 
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");

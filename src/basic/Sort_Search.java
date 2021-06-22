@@ -76,11 +76,11 @@ public class Sort_Search{
         return deathData;
     }
     
-    public static Integer avgForSchizophrenia() {
+    public static Double avgForSchizophrenia() {
         double total = 0;
         double avg;
 
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getSchizophrenia());
         }
@@ -90,10 +90,10 @@ public class Sort_Search{
         return avgRounded;
     }
 
-    public static Integer avgForBipolar() {
+    public static Double avgForBipolar() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getBipolar());
         }
@@ -103,10 +103,10 @@ public class Sort_Search{
         return avgRounded;
     }
 
-    public static Integer avgForEating() {
+    public static Double avgForEating() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getEating());
         }
@@ -116,10 +116,10 @@ public class Sort_Search{
         return avgRounded;
     }
 
-    public static Integer avgForAnxiety() {
+    public static Double avgForAnxiety() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getAnxiety());
         }
@@ -129,10 +129,10 @@ public class Sort_Search{
         return avgRounded;
     }
 
-    public static Integer avgForDrug() {
+    public static Double avgForDrug() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getDrug());
         }
@@ -142,10 +142,10 @@ public class Sort_Search{
         return avgRounded;
     }
 
-    public static Integer avgForDepress() {
+    public static Double avgForDepress() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getDepress());
         }
@@ -154,10 +154,10 @@ public class Sort_Search{
         avgRounded = (int) Math.round(avg);
         return avgRounded;
     }
-    public static Integer avgForAlcohol() {
+    public static Double avgForAlcohol() {
         double total = 0;
         double avg;
-        int avgRounded; 
+        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getAlcohol());
         }
