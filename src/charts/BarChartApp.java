@@ -23,7 +23,8 @@ public class BarChartApp extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
  
-    public Parent createContent() {
+    
+    public Parent createBarChart() {
         String[] years = {"2007", "2008", "2009"};
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(years));
