@@ -64,6 +64,17 @@ public class Sort_Search{
         }
         return deathData;
     }
+    public static ObservableList <Pervalence> byEntityAndYear(String country, int year) {
+        ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
+
+        for (int intCount = 0; intCount < list.size(); intCount ++) {
+
+            if (country.equalsIgnoreCase(list.get(intCount).getCountry()) &&  year == (list.get(intCount).getYear())) {
+                deathData.add(list.get(intCount));
+            }
+        }
+        return deathData;
+    }
     public static ObservableList <Pervalence> byCode(String code) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 

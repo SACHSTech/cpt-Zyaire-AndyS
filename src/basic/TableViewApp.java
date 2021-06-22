@@ -46,11 +46,10 @@ public class TableViewApp extends Application {
             data = br.readLine();
         }
         br.close();
-    
-        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
-        Sort_Search.setList(pervalenceName);
-        System.out.println(Sort_Search.avgForAlcohol());
+        
 
+        final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
+    
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");
         countryCol.setCellValueFactory(new PropertyValueFactory("country"));
