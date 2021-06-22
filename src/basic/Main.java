@@ -70,53 +70,55 @@ public class Main extends Application {
         });
 
         readFile();
-        TableColumn<Pervalence, String> countryCol = new TableColumn<>("Country");
-        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        TableColumn countryCol = new TableColumn();
+        countryCol.setText("Country");
+        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
 
-        TableColumn<Pervalence, String> codeCol = new TableColumn<>("Code");
-        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        TableColumn codeCol = new TableColumn();
+        codeCol.setText("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory("code"));
 
-        TableColumn<Pervalence, Integer> yearCol = new TableColumn<>("Year");
-        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        TableColumn yearCol = new TableColumn();
+        yearCol.setText("Year");
+        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
 
-        TableColumn<Pervalence, Double> schizonphreniaCol = new TableColumn<>("Schizonphrenia");
-        schizonphreniaCol.setMinWidth(150);
-        schizonphreniaCol.setCellValueFactory(new PropertyValueFactory<>("schizonphrenia"));
+        TableColumn schizophreniaCol = new TableColumn();
+        schizophreniaCol.setText("Schizonphrenia");
+        schizophreniaCol.setMinWidth(150);
+        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("schizophrenia"));
 
-        TableColumn<Pervalence, Double> bipolarCol = new TableColumn<>("Bipolar");
+        TableColumn bipolarCol = new TableColumn();
+        bipolarCol.setText("Bipolar Disorders");
         bipolarCol.setMinWidth(150);
-        bipolarCol.setCellValueFactory(new PropertyValueFactory<>("bipolar"));
-
-        TableColumn<Pervalence, Double> eatingCol = new TableColumn<>("Eating");
+        bipolarCol.setCellValueFactory(new PropertyValueFactory("bipolar"));
+        
+        TableColumn eatingCol = new TableColumn();
+        eatingCol.setText("Eating Disorders");
         eatingCol.setMinWidth(150);
-        eatingCol.setCellValueFactory(new PropertyValueFactory<>("eating"));
-
-        TableColumn<Pervalence, Double> anxietyCol = new TableColumn<>("Anxiety");
+        eatingCol.setCellValueFactory(new PropertyValueFactory("eating"));
+        
+        TableColumn anxietyCol = new TableColumn();
+        anxietyCol.setText("Anxiety Disorders");
         anxietyCol.setMinWidth(150);
-        anxietyCol.setCellValueFactory(new PropertyValueFactory<>("anxiety"));
-
-        TableColumn<Pervalence, Double> drugCol = new TableColumn<>("Drug");
+        anxietyCol.setCellValueFactory(new PropertyValueFactory("anxiety"));
+        
+        TableColumn drugCol = new TableColumn();
+        drugCol.setText("Drug use Disorders");
         drugCol.setMinWidth(150);
-        drugCol.setCellValueFactory(new PropertyValueFactory<>("drug"));
-
-        TableColumn<Pervalence, Double> depressCol = new TableColumn<>("Depress");
+        drugCol.setCellValueFactory(new PropertyValueFactory("drug"));
+        
+        TableColumn depressCol = new TableColumn();
+        depressCol.setText("Depressive disorders");
         depressCol.setMinWidth(150);
-        depressCol.setCellValueFactory(new PropertyValueFactory<>("depress"));
-
-        TableColumn<Pervalence, Double> alcoholCol = new TableColumn<>("Alcohol");
+        depressCol.setCellValueFactory(new PropertyValueFactory("depress"));
+        
+        TableColumn alcoholCol = new TableColumn();
+        alcoholCol.setText("Alcohol use Disorders");
         alcoholCol.setMinWidth(150);
-        alcoholCol.setCellValueFactory(new PropertyValueFactory<>("alcohol"));
-
-        table.getColumns().addAll(countryCol, 
-                                    codeCol,
-                                    yearCol,
-                                    schizonphreniaCol, 
-                                    bipolarCol, 
-                                    eatingCol, 
-                                    anxietyCol,
-                                    drugCol,
-                                    depressCol,
-                                    alcoholCol);
+        alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
+        
+        table.setItems(pervList);
+        table.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
 
 
         HBox header = new HBox();
@@ -132,7 +134,7 @@ public class Main extends Application {
         vbox.setPadding(new Insets(10, 20, 30, 20));
         vbox.getChildren().addAll(header, table, bottom);
 
-        primaryStage.setScene(new Scene(vbox, 1320, 600));
+        primaryStage.setScene(new Scene(vbox, 1290, 600));
         primaryStage.show();     
     }
     
