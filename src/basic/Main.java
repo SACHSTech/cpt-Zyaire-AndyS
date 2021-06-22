@@ -2,37 +2,25 @@ package basic;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.geometry.Insets;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 /**
  * 
  * This is the main class of the application. 
@@ -80,7 +68,8 @@ public class Main extends Application {
                 primaryStage.close();
             }
         });
-        
+
+        readFile();
         TableColumn<Pervalence, String> countryCol = new TableColumn<>("Country");
         countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
 
@@ -117,10 +106,6 @@ public class Main extends Application {
         TableColumn<Pervalence, Double> alcoholCol = new TableColumn<>("Alcohol");
         alcoholCol.setMinWidth(150);
         alcoholCol.setCellValueFactory(new PropertyValueFactory<>("alcohol"));
-
-        readFile();
-        
-        
 
         table.getColumns().addAll(countryCol, 
                                     codeCol,
@@ -167,12 +152,6 @@ public class Main extends Application {
             data = br.readLine();
         }
         br.close();
-        
+
     }
-
-
-    /**
-     * Adds a listener to filter the data while entering value in the text box. 
-     */
-
 }
