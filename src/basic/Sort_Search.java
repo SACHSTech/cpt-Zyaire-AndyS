@@ -189,6 +189,12 @@ public class Sort_Search{
     public static void setMSortArray(ArrayList<Pervalence> input) {
         inputList = input;
     }
+    public static ArrayList <Pervalence> mergeSort(ArrayList<Pervalence> input) {
+        setMSortArray(input);
+        divide(0, inputList.size()-1);
+
+        return inputList;
+    }
     private static void divide(int startIndex,int endIndex) {
 
         if (startIndex < endIndex && (endIndex - startIndex) >= 1) {
@@ -196,9 +202,10 @@ public class Sort_Search{
             divide(startIndex, mid);
             divide(mid + 1, endIndex);        
             
-            merger(startIndex,mid,endIndex);            
+            TheMerge(startIndex,mid,endIndex);            
         }
-        private static void merger(int startIndex,int midIndex,int endIndex) {
+    }
+        private static void TheMerge(int startIndex,int midIndex,int endIndex) {
 
             ArrayList <Pervalence> mergedSortedData = new ArrayList<Pervalence>();
             
