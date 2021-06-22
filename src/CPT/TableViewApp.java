@@ -4,6 +4,8 @@ package CPT;
 import java.io.*;
 import java.util.ArrayList;
 
+import basic.Pervalence;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +35,7 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() throws IOException{
+
         ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
         BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
         br.readLine();
@@ -46,7 +49,7 @@ public class TableViewApp extends Application {
         br.close();
 
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
-
+    
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");
         countryCol.setCellValueFactory(new PropertyValueFactory("country"));
@@ -99,7 +102,7 @@ public class TableViewApp extends Application {
         tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
-
+    
 
     @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
