@@ -2,7 +2,7 @@ package basic;
 public class Print{
     public static void main(String[] args) {
         Sort_Search.Everything();
-        public Parent BarChartSettings(Stage primaryStage) {
+       /*  public Parent BarChartSettings(Stage primaryStage) {
             VBox layout = new VBox();
             ArrayList<Pervalence> list = Sort_Search.getList();
             String country;
@@ -48,6 +48,6 @@ public class Print{
               layout.getChildren().addAll(settingLabel, c1, c2, c3, startY, endY, create, back);
               layout.setAlignment(Pos.CENTER);
       
-              return layout;
+              return layout; */
     }
 }

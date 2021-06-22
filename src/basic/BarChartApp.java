@@ -25,10 +25,10 @@ public class BarChartApp extends Application {
     private NumberAxis yAxis;
  
     public Parent createContent() {
-        String[] years = {"2007", "2008", "2009"};
+        String[] years = {"1", "2", "3"};
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        yAxis = new NumberAxis("Units Sold", 0.0d, 3000.0d, 1000.0d);
+        yAxis = new NumberAxis("The Number of Death", 0.0d, 4000.0d, 1000.0d);
         ObservableList<BarChart.Series> barChartData =
             FXCollections.observableArrayList(
                 new BarChart.Series("Apples",

@@ -80,91 +80,77 @@ public class Sort_Search{
         double total = 0;
         double avg;
 
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getSchizophrenia());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
 
     public static Double avgForBipolar() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getBipolar());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
 
     public static Double avgForEating() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getEating());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
 
     public static Double avgForAnxiety() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getAnxiety());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
 
     public static Double avgForDrug() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getDrug());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
 
     public static Double avgForDepress() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getDepress());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
     public static Double avgForAlcohol() {
         double total = 0;
         double avg;
-        double avgRounded; 
         for (int intCount = 0; intCount < list.size(); intCount ++) {
             total = total + (list.get(intCount).getAlcohol());
         }
 
         avg = total / list.size();
-        avgRounded = (int) Math.round(avg);
-        return avgRounded;
+        return avg;
     }
     public static Integer count() {
         int count = 0; 
