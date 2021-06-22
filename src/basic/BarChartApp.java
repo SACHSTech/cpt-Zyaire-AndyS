@@ -1,65 +1,96 @@
 /* ....Show License.... */
 package basic;
  
- 
+import basic.Pervalence;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.ArrayList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
- 
+import javafx.scene.chart.XYChart;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.chart.LineChart;
+
  
 /**
  * A chart that displays rectangular bars with heights indicating data values
  * for categories. Used for displaying information when at least one axis has
  * discontinuous or discrete data.
  */
-public class BarChartApp extends Application {
+public class BarChartApp{
  
-    private BarChart chart;
-    private CategoryAxis xAxis;
-    private NumberAxis yAxis;
- 
-    public Parent createContent() {
-        String[] years = {"1", "2", "3"};
-        xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        yAxis = new NumberAxis("The Number of Death", 0.0d, 4000.0d, 1000.0d);
-        ObservableList<BarChart.Series> barChartData =
-            FXCollections.observableArrayList(
-                new BarChart.Series("Apples",
-                                    FXCollections.observableArrayList(
-                    new BarChart.Data(years[0], 567d),
-                    new BarChart.Data(years[1], 1292d),
-                    new BarChart.Data(years[2], 1292d))),
-                new BarChart.Series("Lemons",
-                                    FXCollections.observableArrayList(
-                    new BarChart.Data(years[0], 956),
-                    new BarChart.Data(years[1], 1665),
-                    new BarChart.Data(years[2], 2559))),
-                new BarChart.Series("Oranges",
-                                    FXCollections.observableArrayList(
-                    new BarChart.Data(years[0], 1154),
-                    new BarChart.Data(years[1], 1927),
-                    new BarChart.Data(years[2], 2774)))
-            );
-        chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
+    public Parent createContent(String disorder, String p1, String p2, String p3, int year, Stage primaryStage) { 
+        Pervalence data1 = Sort_Search.byEntityAndYear(p1, year);
+        Pervalence data2 = Sort_Search.byEntityAndYear(p2, year); 
+        Pervalence data3 = Sort_Search.byEntityAndYear(p3, year); 
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("The number of death");
+        ObservableList<String> countries = FXCollections.<String>observableArrayList();
+        countries.add(p1);
+        countries.add(p2);
+        countries.add(p3);
+        xAxis.setCategories(countries);
+        BarChart <CategoryAxis, NumberAxis> chart = new BarChart(xAxis, yAxis);
+
+        XYChart.Series d1 = new XYChart.Series<>();
+        d1.setName(data1.getCountry());
+        XYChart.Series d2 = new XYChart.Series<>();
+        d2.setName(data2.getCountry());
+        XYChart.Series d3 = new XYChart.Series<>();
+        d3.setName(data3.getCountry());
+
+        if (disorder.equalsIgnoreCase("schizophrenia")){
+            d1.getData().add(data1.getSchizophrenia());
+            d2.getData().add(data2.getSchizophrenia());
+            d3.getData().add(data3.getSchizophrenia());
+
+        } else if(disorder.equalsIgnoreCase("Bipolar")){
+            d1.getData().add(data1.getBipolar());
+            d2.getData().add(data2.getBipolar());
+            d3.getData().add(data3.getBipolar());
+        } else if(disorder.equalsIgnoreCase("Eating")){
+            d1.getData().add(data1.getEating());
+            d2.getData().add(data2.getEating());
+            d3.getData().add(data3.getEating());
+        } else if(disorder.equalsIgnoreCase("Anxiety")){
+            d1.getData().add(data1.getAnxiety());
+            d2.getData().add(data2.getAnxiety());
+            d3.getData().add(data3.getAnxiety());
+        } else if(disorder.equalsIgnoreCase("Drug")){
+            d1.getData().add(data1.getDrug());
+            d2.getData().add(data2.getDrug());
+            d3.getData().add(data3.getDrug());
+        } else if(disorder.equalsIgnoreCase("Depression")){
+            d1.getData().add(data1.getDepress());
+            d2.getData().add(data2.getDepress());
+            d3.getData().add(data3.getDepress());
+        } else if(disorder.equalsIgnoreCase("Alcohol")){
+            d1.getData().add(data1.getAlcohol());
+            d2.getData().add(data2.getAlcohol());
+            d3.getData().add(data3.getAlcohol());
+        } else{
+            d1.getData().add(null);
+            d2.getData().add(null);           
+            d3.getData().add(null);
+        }
+        chart.getData().add(d1);
+        chart.getData().add(d2);
+        chart.getData().add(d3);
         return chart;
-    }
- 
-    @Override public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(createContent()));
-        primaryStage.show();
-    }
- 
-    /**
-     * Java main for when running without JavaFX launcher
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }
