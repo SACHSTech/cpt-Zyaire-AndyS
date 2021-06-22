@@ -46,9 +46,9 @@ public class TableViewApp extends Application {
             data = br.readLine();
         }
         br.close();
-        Sort_Search.
+    
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
-        Sort_Search.setList(pervalenceName);
+
 
         TableColumn countryCol = new TableColumn();
         countryCol.setText("Country");
@@ -102,7 +102,7 @@ public class TableViewApp extends Application {
         tableView.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
         return tableView;
     }
-
+    
 
     @Override public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(createContent()));
