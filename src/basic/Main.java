@@ -1,31 +1,26 @@
 package basic;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.geometry.Insets;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 /**
  * 
  * This is the main class of the application. 
@@ -48,6 +43,9 @@ public class Main extends Application {
         primaryStage.setTitle("Pervalence Caused by Disorders in Different Countries");
 
         Label label = new Label("Search Result:");
+        ChoiceBox cb = new ChoiceBox();
+        cb.getItems().addAll("Dog", "Cat", "Horse");
+        cb.getSelectionModel().selectFirst();
 
         //button to open window to the pie chart
         Button chartBtn = new Button();
@@ -70,7 +68,8 @@ public class Main extends Application {
                 primaryStage.close();
             }
         });
-        
+
+        readFile();
         TableColumn<Pervalence, String> countryCol = new TableColumn<>("Country");
         countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
 
@@ -108,9 +107,6 @@ public class Main extends Application {
         alcoholCol.setMinWidth(150);
         alcoholCol.setCellValueFactory(new PropertyValueFactory<>("alcohol"));
 
-
-        loadData();
-
         table.getColumns().addAll(countryCol, 
                                     codeCol,
                                     yearCol,
@@ -124,9 +120,9 @@ public class Main extends Application {
 
 
         HBox header = new HBox();
-        header.setAlignment(Pos.TOP_LEFT);
+        header.setAlignment(Pos.TOP_CENTER);
         header.setSpacing(10);
-        header.getChildren().addAll(label, textField);
+        header.getChildren().addAll(label, textField, cb);
 
         HBox bottom = new HBox(150);
         bottom.setAlignment(Pos.BOTTOM_CENTER);
@@ -145,25 +141,17 @@ public class Main extends Application {
      * It also calculates the total points per position.
      * @throws FIOException
      */
-    private void loadData() throws IOException {
-
-        //ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
+    private void readFile() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
         br.readLine();
         String data;
         data = br.readLine();
-        while(data != null){
+        while (data != null) {
             var split = data.split(",");
             pervList.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
             data = br.readLine();
         }
         br.close();
-        
+
     }
-
-
-    /**
-     * Adds a listener to filter the data while entering value in the text box. 
-     */
-
 }
