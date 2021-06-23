@@ -40,7 +40,7 @@ public class Main {
         TextField indiS = new TextField("Country Year");
         indiS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         indiS.setOnAction(
-                e -> primaryStage.setScene(new Scene(searchEntry(indiS.getText(), primaryStage), 350, 450)));
+                e -> primaryStage.setScene(new Scene(searchEntry(indiS.getText(), primaryStage), 800, 200)));
 
 
         // lable for country search
@@ -207,7 +207,7 @@ public class Main {
         c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         Button create = new Button("Create!");
-        Label settingLabel = new Label("BarChart Settings");
+        Label settingLabel = new Label("Linechart Settings");
 
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
@@ -303,7 +303,7 @@ public class Main {
         Label entry = new Label(pervalence.toString());
 
         Button back = new Button("Back");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 1200, 500)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         VBox layout = new VBox();
         layout.getChildren().addAll(entry, back);
