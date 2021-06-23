@@ -92,17 +92,16 @@ public class Sort_Search{
     * @param year the year of the data set
     * @return Array list of everything in the data set that has the specific year
     */
-    public static ArrayList <Pervalence> searchYearInArrayList(int year) {
+    public static ArrayList <Pervalence> searchYearInArrayList(String year) {
         ArrayList<Pervalence> deathData = new ArrayList <Pervalence> ();
         for (int intCount = 0; intCount < list.size(); intCount ++) {
 
-            if (year == (list.get(intCount).getYear())) {
+            if (Integer.parseInt(year) == (list.get(intCount).getYear())) {
                 deathData.add(list.get(intCount));
             }
         }
         return deathData;
     }
-    
     /**
     * put everything in the list that is the specific country into the observable list
     * @param country the country of the data set

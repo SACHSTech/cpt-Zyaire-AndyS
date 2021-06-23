@@ -3,6 +3,7 @@ package CPT;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
@@ -54,11 +55,13 @@ public class Main {
         lineChart.setDefaultButton(true);
         lineChart.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 500, 330)));
         
-        
-        Button sortBtn = new Button("Sort by Year");
-        /*
-        sortBtn.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.convert(Sort_Search.mergeSort(Sort_Search.searchYearInArrayList(Integer.parseInt((yearS).getText())))), primaryStage),350, 450)));
-        */
+        // Button of year sort
+        Button sortBtn = new Button("Sort by Year");;
+        //sortBtn.setOnAction(e -> primaryStage.setScene(new Scene()));
+
+        // button to open the Summary
+        Button summaryInfo = new Button("Key information");
+        summaryInfo .setOnAction(e -> primaryStage.setScene(new Scene(summary(primaryStage), 450, 250)));
 
         // Table view
         Button viewAll = new Button("View All Data");
@@ -70,30 +73,39 @@ public class Main {
         barChart.setDefaultButton(true);
         barChart.setOnAction(e -> primaryStage.setScene(new Scene(barSettings(primaryStage), 500, 330)));
 
-        // 
+        // search by year
         HBox high1 = new HBox(10);
         high1.setAlignment(Pos.CENTER);
         high1.getChildren().addAll(yearLabel, yearS);
 
+        // search by country
         HBox high2= new HBox(10);
         high2.setAlignment(Pos.CENTER);
         high2.getChildren().addAll(countryLabel, countryS);
 
+        // sort by year
         HBox high3 = new HBox(10);
         high3.setAlignment(Pos.CENTER);
         high3.getChildren().addAll(sortBtn);
 
+        // search individual
         HBox high4 = new HBox(10);
         high4.setAlignment(Pos.CENTER);
         high4.getChildren().addAll(indiLabel, indiS);
 
+        // view the summary
+        HBox high5 = new HBox(10);
+        high5.setAlignment(Pos.CENTER);
+        high5.getChildren().addAll(summaryInfo);
+
+        // charts and view all
         HBox bottom = new HBox(10);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
         bottom.getChildren().addAll(lineChart, viewAll, barChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
-        vbox.getChildren().addAll(high1, high2, high3, high4, bottom); 
+        vbox.getChildren().addAll(high1, high2, high5, high4, high3, bottom); 
         
         return vbox;
     } 
@@ -245,6 +257,30 @@ public class Main {
         VBox layout = new VBox();
         layout.getChildren().addAll(entry, back);
         layout.setAlignment(Pos.TOP_CENTER);
+
+        return layout;
+    }
+
+    public static Parent summary(Stage primaryStage) {
+        Label avgSch = new Label("Average death caused by Schizophrenia: "+ Sort_Search.avgForSchizophrenia());
+        Label avgBi = new Label("Average death caused by Bipolar: "+ Sort_Search.avgForBipolar());
+        Label avgEat = new Label("Average death caused by Eating Disorder: "+ Sort_Search.avgForEating());
+        Label avgAnx = new Label("Average death caused by Anxiety: "+ Sort_Search.avgForAnxiety());
+        Label avgDru = new Label("Average death caused by Drug Addiction: "+ Sort_Search.avgForDrug());
+        Label avgDep = new Label("Average death caused by Depression: "+ Sort_Search.avgForDepress());
+        Label avgAlc = new Label("Average death caused by Alcohol Addiction: "+ Sort_Search.avgForAlcohol());
+        Label countries = new Label("Countries: " + Sort_Search.count());
+        Label minForAlc = new Label("The minimum for alcohol addiction is : " + Sort_Search.MinForAlcohol());
+        Label maxForDrug = new Label("The maximum for drug addiction is : " + Sort_Search.MaxForDrug());
+        Label anxSD = new Label("The standard deviation for anxiety is : " + Sort_Search.SDForAnxiety());
+
+        Button back = new Button("Back");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+
+        HBox line = new HBox(10);
+        line.getChildren().addAll(minForAlc, maxForDrug, anxSD);
+        VBox layout = new VBox();
+        layout.getChildren().addAll(avgSch, avgBi, avgEat, avgAnx, avgDru, avgDep, avgAlc, countries, back);
 
         return layout;
     }
