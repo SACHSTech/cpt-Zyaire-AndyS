@@ -1,24 +1,13 @@
 package CPT;
 
-import java.io.BufferedReader;
-import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.geometry.Insets;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,70 +15,85 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 /**
  * This is the main class of the application.  
- * It will launch the main window. 
+ * Basic UI 
  * @author Q.Zyaire
  */
 
 public class Main {
 
-    
-
     public static Parent start(Stage primaryStage) {
         
         //lable for year search
-        Label yearLabel = new Label("Search for years:");
+        Label yearLabel = new Label("Search for years: ");
         //text file to enter year search
         TextField yearS = new TextField("Year");
         yearS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         yearS.setOnAction(e -> primaryStage.setScene(new Scene(yearSch(Integer.parseInt(yearS.getText()), primaryStage), 1200, 500)));
 
-        //lable for country search
-        Label countryLabel = new Label("Search for country:");
+        //lable for year search
+        Label indiLabel = new Label("Individual Search: ");
         //text file to enter year search
+        TextField indiS = new TextField("Country Year");
+        indiS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        indiS.setOnAction(
+                e -> primaryStage.setScene(new Scene(searchEntry(indiS.getText(), primaryStage), 350, 450)));
+
+
+        // lable for country search
+        Label countryLabel = new Label("Search for country: ");
+        // text file to enter year search
         TextField countryS = new TextField("Country");
         countryS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         countryS.setOnAction(e -> primaryStage.setScene(new Scene(countrySch(countryS.getText(), primaryStage), 1200, 500)));
 
-        //button to open the line chart
+        // button to open the line chart
         Button lineChart = new Button("Create Line Chart");
         lineChart.setDefaultButton(true);
-        lineChart.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
+        lineChart.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 500, 330)));
         
-        Label sortLabel = new Label("Sort: ");
-        Button sortBtn = new Button("Sort");
+        
+        Button sortBtn = new Button("Sort by Year");
         /*
-        sortBtn.setOnAction(e -> primaryStage.setScene(new Scene(
-                createTable(Sort_Search .convert(Sort_Search.mergeSort(Methods.searchYear(searchYear.getText()))), primaryStage),
-                350, 450)));
+        sortBtn.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.convert(Sort_Search.mergeSort(Sort_Search.searchYearInArrayList(Integer.parseInt((yearS).getText())))), primaryStage),350, 450)));
         */
 
-        //Table view
+        // Table view
         Button viewAll = new Button("View All Data");
         viewAll.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.Everything(), primaryStage), 1200, 500)));
         
 
-        //button to open the bar chart
+        // button to open the bar chart
         Button barChart = new Button("Create Bar Chart");
         barChart.setDefaultButton(true);
-        barChart.setOnAction(e -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
+        barChart.setOnAction(e -> primaryStage.setScene(new Scene(barSettings(primaryStage), 500, 330)));
 
+        // 
         HBox high1 = new HBox(10);
-        high1.setAlignment(Pos.TOP_CENTER);
+        high1.setAlignment(Pos.CENTER);
         high1.getChildren().addAll(yearLabel, yearS);
 
         HBox high2= new HBox(10);
-        high2.setAlignment(Pos.TOP_CENTER);
+        high2.setAlignment(Pos.CENTER);
         high2.getChildren().addAll(countryLabel, countryS);
 
-        HBox bottom = new HBox(150);    
+        HBox high3 = new HBox(10);
+        high3.setAlignment(Pos.CENTER);
+        high3.getChildren().addAll(sortBtn);
+
+        HBox high4 = new HBox(10);
+        high4.setAlignment(Pos.CENTER);
+        high4.getChildren().addAll(indiLabel, indiS);
+
+        HBox bottom = new HBox(10);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(lineChart, barChart);
+        bottom.getChildren().addAll(lineChart, viewAll, barChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
-        vbox.getChildren().addAll(high2, viewAll, bottom, high1); 
+        vbox.getChildren().addAll(high1, high2, high3, high4, bottom); 
         
         return vbox;
     } 
@@ -109,7 +113,7 @@ public class Main {
     }
 
     public static Parent barSettings(Stage primaryStage) {
-        VBox layout = new VBox();
+        VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
         Pervalence pervItem;
@@ -150,7 +154,7 @@ public class Main {
     }
 
     public static Parent lineSettings(Stage primaryStage) {
-        VBox layout = new VBox();
+        VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
         Pervalence pervItem;
@@ -163,8 +167,7 @@ public class Main {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-        }
-        
+        }  
 
         create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getText(), primaryStage))));
 
@@ -228,6 +231,20 @@ public class Main {
 
         VBox layout = new VBox();
         layout.getChildren().addAll(tableView, back);
+
+        return layout;
+    }
+    public static Parent searchEntry(String input, Stage primaryStage) {
+        String[] spli = input.split(" ");
+        Pervalence pervalence = Sort_Search.byEntityAndYear(spli[0], Integer.parseInt(spli[1]));
+        Label entry = new Label(pervalence.toString());
+
+        Button back = new Button("Back");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(entry, back);
+        layout.setAlignment(Pos.TOP_CENTER);
 
         return layout;
     }
