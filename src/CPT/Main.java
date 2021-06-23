@@ -175,7 +175,6 @@ public class Main extends Application {
         }
         br.close();
         Sort_Search.setList(pervalenceName);
-        System.out.println(Sort_Search.Everything());
     }
 
     public static Parent barSettings(Stage primaryStage) {
@@ -201,12 +200,10 @@ public class Main extends Application {
 
         Button create = new Button("Create!");
         Label settingLabel = new Label("BarChart Settings");
-        System.out.println(list.size());
 
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            System.out.println(country);
             if (!country.equals(prevC)) {
                 c1.getItems().add(pervItem);
                 c2.getItems().add(pervItem);
