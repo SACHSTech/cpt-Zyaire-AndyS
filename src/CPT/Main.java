@@ -73,37 +73,10 @@ public class Main extends Application {
 
         //button to open the bar chart
         Button barChart = new Button("Create LineChart");
-        barChart.setDefaultButton(true);
-        barChart.setOnAction((ActionEvent t) -> {
-            final Stage stage = new Stage();
-
-            //create root node of scene, i.e. group
-            Group rootGroup = new Group();
-
-            //create scene with set width, height and color
-            Scene scene = new Scene(rootGroup, 200, 200, Color.WHITESMOKE);
-
-            //set scene to stage
-            stage.setScene(scene);
-
-            //set title to stage
-            stage.setTitle("New stage");
-
-            //center stage on screen
-            stage.centerOnScreen();
-
-            //show the stage
-            stage.show();
-
-            //add some node to scene
-            Text text = new Text(20, 110, "JavaFX");
-            text.setFont(Font.font(Font.getDefault().getFamily(), 50));
-
-            //add text to the main root group
-            rootGroup.getChildren().add(text);
-        });
+        //barChart.setDefaultButton(true);
+        //barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
         
-        
+
         //button to do the merge sort
         Button mergeBtn = new Button();
         mergeBtn.setText("Merge Sort");
