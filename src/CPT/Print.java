@@ -34,7 +34,7 @@ public class Print extends Application{
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(BarChartApp.createContent("Depression", "Canada", "China", "Angola", 2015, primaryStage), 300, 250));
+        primaryStage.setScene(new Scene(lineChart.createLine("China", primaryStage), 300, 250));
         primaryStage.setTitle("Death From Mental Illness");
         primaryStage.show();
     }

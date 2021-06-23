@@ -1,7 +1,7 @@
 
 package CPT;
 
-
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,48 +11,30 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
+import javafx.scene.chart.CategoryAxis;
 
-public class lineChart extends Application {
+public class lineChart {
 
-    private LineChart chart;
-    private NumberAxis xAxis;
-    private NumberAxis yAxis;
+    public static Parent createLine(String country, Stage primaryStage) {
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<String, Double> chart = new LineChart(xAxis, yAxis);
+        ObservableList<Pervalence> pData = Sort_Search.byEntity(country);
+        Pervalence pervalence; 
+        
+        chart.setTitle(country);
+        xAxis.setLabel("Year");
+        yAxis.setLabel("The number of death");
 
-    public Parent createLine() {
-        xAxis = new NumberAxis("Values for X-Axis", 0, 3, 1);
-        yAxis = new NumberAxis("Values for Y-Axis", 0, 3, 1);
-        ObservableList<XYChart.Series<Double,Double>> lineChartData =
-            FXCollections.observableArrayList(
-                new LineChart.Series<>("Series 1",
-                                       FXCollections.observableArrayList(
-                    new XYChart.Data<>(0.0, 1.0),
-                    new XYChart.Data<>(1.2, 1.4),
-                    new XYChart.Data<>(2.2, 1.9),
-                    new XYChart.Data<>(2.7, 2.3),
-                    new XYChart.Data<>(2.9, 0.5))),
-                new LineChart.Series<>("Series 2",
-                                       FXCollections.observableArrayList(
-                    new XYChart.Data<>(0.0, 1.6),
-                    new XYChart.Data<>(0.8, 0.4),
-                    new XYChart.Data<>(1.4, 2.9),
-                    new XYChart.Data<>(2.1, 1.3),
-                    new XYChart.Data<>(2.6, 0.9)))
-            );
-        chart = new LineChart(xAxis, yAxis, lineChartData);
+        XYChart.Series <String, Double> line = new XYChart.Series <String, Double>();
+        line.setName(country);
+
+        for (int intCount = 0; intCount < pData.size(); intCount ++) {
+            pervalence = pData.get(intCount);
+            line.getData().add(new XYChart.Data (pervalence.getYear(), (pervalence.getSchizophrenia() + pervalence.getBipolar() + pervalence.getEating() + pervalence.getAnxiety() + pervalence.getDrug() + pervalence.getDepress() + pervalence.getAlcohol())));
+        }
+        chart.getData().add(line);
+
         return chart;
     }
-
-    @Override public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(createLine()));
-        primaryStage.show();
-    }
-
-    /**
-     * Java main for when running without JavaFX launcher
-     * @param args command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 }
