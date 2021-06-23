@@ -180,6 +180,7 @@ public class Main extends Application {
     public static Parent barSettings(Stage primaryStage) {
         VBox layout = new VBox();
         ArrayList<Pervalence> list = Sort_Search.getList();
+        // ObservableList<Pervalence> data = FXCollections.observableArrayList(list); no see see
         String country;
         String prevC = "";
         Pervalence pervItem;
@@ -192,7 +193,7 @@ public class Main extends Application {
         ChoiceBox<Pervalence> c3 = new ChoiceBox <Pervalence>();
         c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
 
-        TextField year = new TextField("Year");
+        TextField year = new TextField("Year 1990 - 2017");
         year.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         TextField disorder = new TextField("Disorder");
