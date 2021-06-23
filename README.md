@@ -7,7 +7,7 @@ Link: (https://ourworldindata.org/grapher/prevalence-by-mental-and-substance-use
 We chose this data set becuase it is about mental heath issues. Especially during the COVID period, it is a problem we all need to focus on all over the world. Even though this data set before the COVID period, it is still significant enough for us to do an application about it. We were expecting an obvious positive slope on our line chart, but it didn't happen. 
 
 # Videos:
-Demo video : ()
+Demo video : (https://drive.google.com/file/d/1J6-xpUU76g87tfGyFLLoXH-3tTzjO8p7/view?usp=sharing)
 Course Conections:
 Andy:(https://drive.google.com/file/d/15zxIuLjslrFblMAC56GjOqf-iqwDIYF-/view) 
-Zyaire: ()
+Zyaire: (https://drive.google.com/file/d/16xUTB2rta2tYoRzd18yibSmySoP4hwRc/view?usp=sharing)
