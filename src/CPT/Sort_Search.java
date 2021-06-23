@@ -95,7 +95,6 @@ public class Sort_Search{
     public static ArrayList <Pervalence> searchYearInArrayList(int year) {
         ArrayList<Pervalence> deathData = new ArrayList <Pervalence> ();
         for (int intCount = 0; intCount < list.size(); intCount ++) {
-
             if (year == (list.get(intCount).getYear())) {
                 deathData.add(list.get(intCount));
             }
