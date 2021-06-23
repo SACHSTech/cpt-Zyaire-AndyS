@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import basic.Pervalence;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +35,19 @@ import javafx.stage.Stage;
 public class TableViewApp extends Application {
 
     public Parent createContent() throws IOException{
-        
+
+        ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
+        BufferedReader br = new BufferedReader(new FileReader("src/basic/PervalenceByDisorders.csv"));
+        br.readLine();
+        String data;
+        data = br.readLine();
+        while(data != null){
+            var split = data.split(",");
+            pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
+            data = br.readLine();
+        }
+        br.close();
+
         final ObservableList<Pervalence> aryList = FXCollections.observableArrayList(pervalenceName);
     
         TableColumn countryCol = new TableColumn();
