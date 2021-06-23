@@ -3,7 +3,6 @@ package CPT;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
@@ -110,7 +109,15 @@ public class Main {
         return vbox;
     } 
    
-    
+    /**
+     * Year search
+     * input a sepcific year
+     * Displays all the data in that year
+     * You can go back to the menu
+     * @param year
+     * @param primaryStage
+     * @return table
+     */
     public static Parent yearSch(int year, Stage primaryStage) {
         ObservableList<Pervalence> data = Sort_Search.searchYear(year);
         Parent table = createTable(data, primaryStage);
@@ -118,12 +125,29 @@ public class Main {
         return table;
     }
 
+    /**
+     * country search
+     * input a sepcific coubtry
+     * Displays all the data in that country
+     * You can go back to the menu
+     * @param country
+     * @param primaryStage
+     * @return table
+     */
     public static Parent countrySch(String country, Stage primaryStage) {
         ObservableList<Pervalence> data = Sort_Search.byEntity(country);
         Parent table = createTable(data, primaryStage);
         return table;
     }
 
+    /**
+     * set the bar UI
+     * input 3 countries, one year and a disorder
+     * Display a bar chart that could compare the pervalent of 3 country in that year
+     * You can go back to the menu or the setting UI
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent barSettings(Stage primaryStage) {
         VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
@@ -165,6 +189,14 @@ public class Main {
         return layout;
     }
 
+    /**
+     * set the Line chart UI
+     * input 1 country, generate the total death of disorder in every year
+     * Display a line chart
+     * You can go back to the menu or the setting UI
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent lineSettings(Stage primaryStage) {
         VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
@@ -191,6 +223,15 @@ public class Main {
 
         return layout;
     }
+
+    /**
+     * Table view thing
+     * gives you all the datas
+     * You can go back to the menu
+     * @param data
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent createTable(ObservableList<Pervalence> data, Stage primaryStage) {
 
         TableColumn <String, String> country = new TableColumn <String, String>();
@@ -246,13 +287,22 @@ public class Main {
 
         return layout;
     }
+
+    /**
+     * search individually
+     * input country and year, gives you individual data
+     * You can go back to the menu
+     * @param input
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent searchEntry(String input, Stage primaryStage) {
         String[] spli = input.split(" ");
         Pervalence pervalence = Sort_Search.byEntityAndYear(spli[0], Integer.parseInt(spli[1]));
         Label entry = new Label(pervalence.toString());
 
         Button back = new Button("Back");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 1200, 500)));
 
         VBox layout = new VBox();
         layout.getChildren().addAll(entry, back);
@@ -261,6 +311,13 @@ public class Main {
         return layout;
     }
 
+    /**
+     * press the button gives you all the average
+     * Gives you total countries
+     * You can go back to the menu
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent summary(Stage primaryStage) {
         Label avgSch = new Label("Average death caused by Schizophrenia: "+ Sort_Search.avgForSchizophrenia());
         Label avgBi = new Label("Average death caused by Bipolar: "+ Sort_Search.avgForBipolar());
@@ -275,7 +332,7 @@ public class Main {
         Label anxSD = new Label("The standard deviation for anxiety is : " + Sort_Search.SDForAnxiety());
 
         Button back = new Button("Back");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         HBox line = new HBox(10);
         line.getChildren().addAll(minForAlc, maxForDrug, anxSD);
