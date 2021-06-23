@@ -55,7 +55,7 @@ public class BarChartApp{
         d2.setName(data2.getCountry());
         XYChart.Series d3 = new XYChart.Series<>();
         d3.setName(data3.getCountry());
-
+        // put the data into the bars. The information varys depending on the disorder input. 
         if (disorder.equalsIgnoreCase("schizophrenia")){
             d1.getData().add(new XYChart.Data(p1,data1.getSchizophrenia()));
             d2.getData().add(new XYChart.Data(p2,data2.getSchizophrenia()));
