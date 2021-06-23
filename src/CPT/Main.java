@@ -1,22 +1,13 @@
 package CPT;
 
-import java.io.BufferedReader;
-import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.geometry.Insets;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,162 +15,153 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 /**
  * This is the main class of the application.  
+ * Basic UI 
  * It will launch the main window. 
- * 
  * @author Q.Zyaire
  */
-public class Main extends Application {
 
-    private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
-    private TableView<Pervalence> table = new TableView<>();
+public class Main {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Pervalence Caused by Disorders in Different Countries");
-
-        Label label = new Label("Search Result:");
-        ChoiceBox cb = new ChoiceBox();
-        cb.getItems().addAll("Dog", "Cat", "Horse");
-        cb.getSelectionModel().selectFirst();
-
+    public static Parent start(Stage primaryStage) {
+        
+        //lable for year search
+        Label yearLabel = new Label("Search for years: ");
         //text file to enter year search
-        TextField yearSearch = new TextField("year");
-        yearSearch.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-        yearSearch.setOnAction(
-                e -> Sort_Search.searchYear(Integer.parseInt(yearSearch.getText())));// questionable
+        TextField yearS = new TextField("Year");
+        yearS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        yearS.setOnAction(e -> primaryStage.setScene(new Scene(yearSch(Integer.parseInt(yearS.getText()), primaryStage), 1200, 500)));
 
-        //button to open the line chart
+        //lable for year search
+        Label indiLabel = new Label("Individual Search: ");
+        //text file to enter year search
+        TextField indiS = new TextField("Country Year");
+        indiS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        indiS.setOnAction(
+                e -> primaryStage.setScene(new Scene(searchEntry(indiS.getText(), primaryStage), 350, 450)));
+
+
+        // lable for country search
+        Label countryLabel = new Label("Search for country: ");
+        // text file to enter year search
+        TextField countryS = new TextField("Country");
+        countryS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        countryS.setOnAction(e -> primaryStage.setScene(new Scene(countrySch(countryS.getText(), primaryStage), 1200, 500)));
+
+        // button to open the line chart
         Button lineChart = new Button("Create Line Chart");
         lineChart.setDefaultButton(true);
-        lineChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
- 
+        lineChart.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 500, 330)));
+        
+        // Button of year sort
+        Button sortBtn = new Button("Sort by Year");;
+        //sortBtn.setOnAction(e -> primaryStage.setScene(new Scene()));
 
-        //button to open the bar chart
+        // button to open the Summary
+        Button summaryInfo = new Button("Key information");
+        summaryInfo .setOnAction(e -> primaryStage.setScene(new Scene(summary(primaryStage), 450, 250)));
+
+        // Table view
+        Button viewAll = new Button("View All Data");
+        viewAll.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.Everything(), primaryStage), 1200, 500)));
+        
+
+        // button to open the bar chart
         Button barChart = new Button("Create Bar Chart");
         barChart.setDefaultButton(true);
-        barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
-        
+        barChart.setOnAction(e -> primaryStage.setScene(new Scene(barSettings(primaryStage), 500, 330)));
 
-        //button to do the merge sort
-        Button mergeBtn = new Button();
-        mergeBtn.setText("Merge Sort");
-        mergeBtn.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("merge merge");
-            }
-        });
+        // search by year
+        HBox high1 = new HBox(10);
+        high1.setAlignment(Pos.CENTER);
+        high1.getChildren().addAll(yearLabel, yearS);
 
-        readFile();
-        
-        TableColumn countryCol = new TableColumn();
-        countryCol.setText("Country");
-        countryCol.setCellValueFactory(new PropertyValueFactory("country"));
+        // search by country
+        HBox high2= new HBox(10);
+        high2.setAlignment(Pos.CENTER);
+        high2.getChildren().addAll(countryLabel, countryS);
 
-        TableColumn codeCol = new TableColumn();
-        codeCol.setText("Code");
-        codeCol.setCellValueFactory(new PropertyValueFactory("code"));
+        // sort by year
+        HBox high3 = new HBox(10);
+        high3.setAlignment(Pos.CENTER);
+        high3.getChildren().addAll(sortBtn);
 
-        TableColumn yearCol = new TableColumn();
-        yearCol.setText("Year");
-        yearCol.setCellValueFactory(new PropertyValueFactory("year"));
+        // search individual
+        HBox high4 = new HBox(10);
+        high4.setAlignment(Pos.CENTER);
+        high4.getChildren().addAll(indiLabel, indiS);
 
-        TableColumn schizophreniaCol = new TableColumn();
-        schizophreniaCol.setText("Schizonphrenia");
-        schizophreniaCol.setMinWidth(150);
-        schizophreniaCol.setCellValueFactory(new PropertyValueFactory("schizophrenia"));
+        // view the summary
+        HBox high5 = new HBox(10);
+        high5.setAlignment(Pos.CENTER);
+        high5.getChildren().addAll(summaryInfo);
 
-        TableColumn bipolarCol = new TableColumn();
-        bipolarCol.setText("Bipolar Disorders");
-        bipolarCol.setMinWidth(150);
-        bipolarCol.setCellValueFactory(new PropertyValueFactory("bipolar"));
-        
-        TableColumn eatingCol = new TableColumn();
-        eatingCol.setText("Eating Disorders");
-        eatingCol.setMinWidth(150);
-        eatingCol.setCellValueFactory(new PropertyValueFactory("eating"));
-        
-        TableColumn anxietyCol = new TableColumn();
-        anxietyCol.setText("Anxiety Disorders");
-        anxietyCol.setMinWidth(150);
-        anxietyCol.setCellValueFactory(new PropertyValueFactory("anxiety"));
-        
-        TableColumn drugCol = new TableColumn();
-        drugCol.setText("Drug use Disorders");
-        drugCol.setMinWidth(150);
-        drugCol.setCellValueFactory(new PropertyValueFactory("drug"));
-        
-        TableColumn depressCol = new TableColumn();
-        depressCol.setText("Depressive disorders");
-        depressCol.setMinWidth(150);
-        depressCol.setCellValueFactory(new PropertyValueFactory("depress"));
-        
-        TableColumn alcoholCol = new TableColumn();
-        alcoholCol.setText("Alcohol use Disorders");
-        alcoholCol.setMinWidth(150);
-        alcoholCol.setCellValueFactory(new PropertyValueFactory("alcohol"));
-        
-        table.setItems(pervList);
-        table.getColumns().addAll(countryCol, codeCol, yearCol, schizophreniaCol, bipolarCol, eatingCol, anxietyCol, drugCol, depressCol, alcoholCol);
-
-        HBox header = new HBox(10);
-        header.setAlignment(Pos.TOP_CENTER);
-        header.getChildren().addAll(label, yearSearch, cb);
-
-        HBox bottom = new HBox(150);    
+        // charts and view all
+        HBox bottom = new HBox(10);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(lineChart, mergeBtn, barChart);
+        bottom.getChildren().addAll(lineChart, viewAll, barChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
-        vbox.getChildren().addAll(header, table, bottom);
-
-        primaryStage.setScene(new Scene(vbox, 1290, 600));
-        primaryStage.show();     
-    }
-    
+        vbox.getChildren().addAll(high1, high2, high5, high4, high3, bottom); 
+        
+        return vbox;
+    } 
+   
     /**
-     * Loads data from the csv file.
-     * It also calculates the total points per position.
-     * @throws FIOException
+     * Year search
+     * input a sepcific year
+     * Displays all the data in that year
+     * You can go back to the menu
+     * @param year
+     * @param primaryStage
+     * @return table
      */
-    public void readFile() throws IOException {
-        ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
-        BufferedReader br = new BufferedReader(new FileReader("src/CPT/PervalenceByDisorders.csv"));
-        br.readLine();
-        String data;
-        data = br.readLine();
-        while (data != null) {
-            var split = data.split(",");
-            pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
-            pervList.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
-            data = br.readLine();
-        }
-        br.close();
-        Sort_Search.setList(pervalenceName);
+    public static Parent yearSch(int year, Stage primaryStage) {
+        ObservableList<Pervalence> data = Sort_Search.searchYear(year);
+        Parent table = createTable(data, primaryStage);
+
+        return table;
     }
 
+    /**
+     * country search
+     * input a sepcific coubtry
+     * Displays all the data in that country
+     * You can go back to the menu
+     * @param country
+     * @param primaryStage
+     * @return table
+     */
+    public static Parent countrySch(String country, Stage primaryStage) {
+        ObservableList<Pervalence> data = Sort_Search.byEntity(country);
+        Parent table = createTable(data, primaryStage);
+        return table;
+    }
+
+    /**
+     * set the bar UI
+     * input 3 countries, one year and a disorder
+     * Display a bar chart that could compare the pervalent of 3 country in that year
+     * You can go back to the menu or the setting UI
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent barSettings(Stage primaryStage) {
-        VBox layout = new VBox();
+        VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
-        String temp = "";
         Pervalence pervItem;
-        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
-        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c1 = new TextField("Enter Country 1");
+        c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Pervalence> c2 = new ChoiceBox <Pervalence>();
-        c2.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c2 = new TextField("Enter Country 2");
+        c2.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Pervalence> c3 = new ChoiceBox <Pervalence>();
-        c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c3 = new TextField("Enter Country 3");
+        c3.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         TextField year = new TextField("Year 1990 - 2017");
         year.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
@@ -193,23 +175,14 @@ public class Main extends Application {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            
-
-            if (!country.equals(temp)) {
-                c1.getItems().add(pervItem);
-                c2.getItems().add(pervItem);
-                c3.getItems().add(pervItem);
-            }
-
-            temp = country;
         }
         
 
-        create.setOnAction(e -> primaryStage.setScene(new Scene(BarChartApp.createContent(disorder.getText(), c1.getValue().getCountry(),
-                c2.getValue().getCountry(), c3.getValue().getCountry(), Integer.parseInt(year.getText()), primaryStage))));
+        create.setOnAction(e -> primaryStage.setScene(new Scene(BarChartApp.createContent(disorder.getText(), c1.getText(),
+                c2.getText(), c3.getText(), Integer.parseInt(year.getText()), primaryStage))));
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> System.out.println("qwq"));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         layout.getChildren().addAll(settingLabel, c1, c2, c3, year, disorder, create, back);
         layout.setAlignment(Pos.CENTER);
@@ -217,14 +190,21 @@ public class Main extends Application {
         return layout;
     }
 
+    /**
+     * set the Line chart UI
+     * input 1 country, generate the total death of disorder in every year
+     * Display a line chart
+     * You can go back to the menu or the setting UI
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent lineSettings(Stage primaryStage) {
-        VBox layout = new VBox();
+        VBox layout = new VBox(10);
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
-        String temp = "";
         Pervalence pervItem;
-        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
-        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c1 = new TextField("Enter Country");
+        c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         Button create = new Button("Create!");
         Label settingLabel = new Label("BarChart Settings");
@@ -232,19 +212,12 @@ public class Main extends Application {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            
-            if (!country.equals(temp)) {
-                c1.getItems().add(pervItem);
-            }
+        }  
 
-            temp = country;
-        }
-        
-
-        create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getValue().getCountry(), primaryStage))));
+        create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getText(), primaryStage))));
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> System.out.println("qwq"));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         layout.getChildren().addAll(settingLabel, c1, create, back);
         layout.setAlignment(Pos.CENTER);
@@ -252,33 +225,121 @@ public class Main extends Application {
         return layout;
     }
 
-    /*
+    /**
+     * Table view thing
+     * gives you all the datas
+     * You can go back to the menu
+     * @param data
+     * @param primaryStage
+     * @return layout
+     */
     public static Parent createTable(ObservableList<Pervalence> data, Stage primaryStage) {
 
-        TableColumn <String, String> nation = new TableColumn <String, String>();
-        nation.setText("Country");
-        nation.setCellValueFactory(new PropertyValueFactory <String, String> ("Nation"));
+        TableColumn <String, String> country = new TableColumn <String, String>();
+        country.setText("Country");
+        country.setCellValueFactory(new PropertyValueFactory <String, String> ("country"));
 
         TableColumn <String, String> year = new TableColumn <String, String>();
         year.setText("Year");
         year.setCellValueFactory(new PropertyValueFactory <String, String> ("year"));
 
-        TableColumn <String, String> population = new TableColumn <String, String>();
-        population.setText("Population");
-        population.setCellValueFactory(new PropertyValueFactory <String, String> ("population"));
+        TableColumn <String, String> code = new TableColumn <String, String>();
+        code.setText("Code");
+        code.setCellValueFactory(new PropertyValueFactory <String, String> ("code"));
+
+        TableColumn <String, String> schizophrenia = new TableColumn <String, String>();
+        schizophrenia.setText("Schizophrenia");
+        schizophrenia.setCellValueFactory(new PropertyValueFactory <String, String> ("schizophrenia"));
+
+        TableColumn <String, String> bipolar = new TableColumn <String, String>();
+        bipolar.setText("Bipolar");
+        bipolar.setCellValueFactory(new PropertyValueFactory <String, String> ("bipolar"));
+        
+        TableColumn <String, String> eating = new TableColumn <String, String>();
+        eating.setText("eating disorder");
+        eating.setCellValueFactory(new PropertyValueFactory <String, String> ("eating"));
+
+        TableColumn <String, String> anxiety = new TableColumn <String, String>();
+        anxiety.setText("Anxiety");
+        anxiety.setCellValueFactory(new PropertyValueFactory <String, String> ("anxiety"));
+
+        TableColumn <String, String> drug = new TableColumn <String, String>();
+        drug.setText("Drug Addiction");
+        drug.setCellValueFactory(new PropertyValueFactory <String, String> ("drug"));
+
+        TableColumn <String, String> depress = new TableColumn <String, String>();
+        depress.setText("Depression");
+        depress.setCellValueFactory(new PropertyValueFactory <String, String> ("depress"));
+
+        TableColumn <String, String> alcohol = new TableColumn <String, String>();
+        alcohol.setText("Alcohol Addiction");
+        alcohol.setCellValueFactory(new PropertyValueFactory <String, String> ("alcohol"));
+
 
         final TableView tableView = new TableView();
         tableView.setItems(data);
-        tableView.getColumns().addAll(nation, year, population);
+        tableView.getColumns().addAll(country, year, code, schizophrenia, bipolar, eating, anxiety, drug, depress, alcohol);
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> System.out.println("qwq"));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         VBox layout = new VBox();
         layout.getChildren().addAll(tableView, back);
 
         return layout;
     }
-    */
 
+    /**
+     * search individually
+     * input country and year, gives you individual data
+     * You can go back to the menu
+     * @param input
+     * @param primaryStage
+     * @return layout
+     */
+    public static Parent searchEntry(String input, Stage primaryStage) {
+        String[] spli = input.split(" ");
+        Pervalence pervalence = Sort_Search.byEntityAndYear(spli[0], Integer.parseInt(spli[1]));
+        Label entry = new Label(pervalence.toString());
+
+        Button back = new Button("Back");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 1200, 500)));
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(entry, back);
+        layout.setAlignment(Pos.TOP_CENTER);
+
+        return layout;
+    }
+
+    /**
+     * press the button gives you all the average
+     * Gives you total countries
+     * You can go back to the menu
+     * @param primaryStage
+     * @return layout
+     */
+    public static Parent summary(Stage primaryStage) {
+        Label avgSch = new Label("Average death caused by Schizophrenia: "+ Sort_Search.avgForSchizophrenia());
+        Label avgBi = new Label("Average death caused by Bipolar: "+ Sort_Search.avgForBipolar());
+        Label avgEat = new Label("Average death caused by Eating Disorder: "+ Sort_Search.avgForEating());
+        Label avgAnx = new Label("Average death caused by Anxiety: "+ Sort_Search.avgForAnxiety());
+        Label avgDru = new Label("Average death caused by Drug Addiction: "+ Sort_Search.avgForDrug());
+        Label avgDep = new Label("Average death caused by Depression: "+ Sort_Search.avgForDepress());
+        Label avgAlc = new Label("Average death caused by Alcohol Addiction: "+ Sort_Search.avgForAlcohol());
+        Label countries = new Label("Countries: " + Sort_Search.count());
+        Label minForAlc = new Label("The minimum for alcohol addiction is : " + Sort_Search.MinForAlcohol());
+        Label maxForDrug = new Label("The maximum for drug addiction is : " + Sort_Search.MaxForDrug());
+        Label anxSD = new Label("The standard deviation for anxiety is : " + Sort_Search.SDForAnxiety());
+
+        Button back = new Button("Back");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
+
+        HBox line = new HBox(10);
+        line.getChildren().addAll(minForAlc, maxForDrug, anxSD);
+        VBox layout = new VBox();
+        layout.getChildren().addAll(avgSch, avgBi, avgEat, avgAnx, avgDru, avgDep, avgAlc, countries, back);
+
+        return layout;
+    }
 }

@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
 import javafx.scene.chart.CategoryAxis;
@@ -42,6 +44,16 @@ public class lineChart {
         }
         chart.getData().add(line);
 
-        return chart;
+        Button back = new Button("Back to Menu");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(Main.start(primaryStage), 300, 250)));
+
+        Button Settings = new Button("Settings");
+        Settings.setOnAction(e -> primaryStage.setScene(new Scene(Main.barSettings(primaryStage), 300, 250)));
+
+        VBox box = new VBox();
+
+        box.getChildren().addAll(chart, back, Settings);
+
+        return box;
     }
 }

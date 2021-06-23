@@ -122,4 +122,8 @@ public class Pervalence {
     public double getAlcohol() {
         return this.alcohol;
     }
+
+    public String toString(){
+        return getCountry() + " " + getYear() + " " + getCode() + " " + getSchizophrenia() + " " + getBipolar() + " " + getEating() + " " + getAnxiety() + " " + getDrug() + " " + getDepress() + " " + getAlcohol();
+    }
 }
