@@ -2,6 +2,7 @@ package CPT;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
@@ -28,6 +29,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 /**
  * 
  * This is the main class of the application. 
@@ -56,9 +60,9 @@ public class Main extends Application {
         cb.getSelectionModel().selectFirst();
 
         //button to open the line chart
-        Button lineChart = new Button();
-        lineChart.setText("Another Chart");
-        lineChart.setOnAction(new EventHandler<ActionEvent>() {
+        Button other = new Button();
+        other.setText("Another Chart");
+        other.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
@@ -67,17 +71,39 @@ public class Main extends Application {
         });
  
 
-        //button to open the other chart
-        Button otherChart = new Button();
-        otherChart.setText("Another Chart");
-        otherChart.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("bar chart ??");
-            }
-        });
+        //button to open the bar chart
+        Button barChart = new Button("Create LineChart");
+        barChart.setDefaultButton(true);
+        barChart.setOnAction((ActionEvent t) -> {
+            final Stage stage = new Stage();
 
+            //create root node of scene, i.e. group
+            Group rootGroup = new Group();
+
+            //create scene with set width, height and color
+            Scene scene = new Scene(rootGroup, 200, 200, Color.WHITESMOKE);
+
+            //set scene to stage
+            stage.setScene(scene);
+
+            //set title to stage
+            stage.setTitle("New stage");
+
+            //center stage on screen
+            stage.centerOnScreen();
+
+            //show the stage
+            stage.show();
+
+            //add some node to scene
+            Text text = new Text(20, 110, "JavaFX");
+            text.setFont(Font.font(Font.getDefault().getFamily(), 50));
+
+            //add text to the main root group
+            rootGroup.getChildren().add(text);
+        });
+        
+        
         //button to do the merge sort
         Button mergeBtn = new Button();
         mergeBtn.setText("Merge Sort");
@@ -147,7 +173,7 @@ public class Main extends Application {
 
         HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(lineChart, mergeBtn, otherChart);
+        bottom.getChildren().addAll(other, mergeBtn, barChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
@@ -174,4 +200,55 @@ public class Main extends Application {
         }
         br.close();
     }
+    /*
+    public static Parent barSettings(Stage primaryStage) {
+        VBox layout = new VBox();
+        ArrayList<Country> list = Methods.getList();
+        String cName;
+        String prevC = "";
+        Country country;
+        ChoiceBox<Country> c1 = new ChoiceBox <Country>();
+        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+
+        ChoiceBox<Country> c2 = new ChoiceBox <Country>();
+        c2.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+
+        ChoiceBox<Country> c3 = new ChoiceBox <Country>();
+        c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+
+        TextField startY = new TextField("Start Year");
+        startY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+
+        TextField endY = new TextField("End Year");
+        endY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+
+        Button create = new Button("Create!");
+        Label settingLabel = new Label("BarChart Settings");
+
+        for (int intCount = 0; intCount < list.size(); intCount++) {
+            country = list.get(intCount);
+            cName = country.getNation();
+            country = Methods.getHMap().get(cName);
+
+            if (!cName.equals(prevC)) {
+                c1.getItems().add(country);
+                c2.getItems().add(country);
+                c3.getItems().add(country);
+            }
+
+            prevC = cName;
+        }
+
+        create.setOnAction(e -> primaryStage.setScene(new Scene(createBar(startY.getText(), endY.getText(),
+                c1.getValue(), c2.getValue(), c3.getValue(), primaryStage))));
+
+        Button back = new Button("Back to Menu");
+        back.setOnAction(e -> primaryStage.setScene(new Scene(mainMenu(primaryStage), 300, 250)));
+
+        layout.getChildren().addAll(settingLabel, c1, c2, c3, startY, endY, create, back);
+        layout.setAlignment(Pos.CENTER);
+
+        return layout;
+    }
+    */
 }
