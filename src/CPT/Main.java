@@ -27,6 +27,7 @@ import javafx.scene.layout.VBox;
 /**
  * This is the main class of the application.  
  * It will launch the main window. 
+ * 
  * @author Q.Zyaire
  */
 public class Main extends Application {
