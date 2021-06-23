@@ -13,9 +13,11 @@ import javafx.scene.chart.XYChart;
 
  
 /**
- * A chart that displays rectangular bars with heights indicating data values
- * for categories. Used for displaying information when at least one axis has
- * discontinuous or discrete data.
+ * A bar graph that displays the number of death in three countries for a speicifc mental disorder
+ * It allows the user to input the disorder, three different coutries and the year. 
+ * The x-axis are the countries, they will be in different colours
+ * The y-axis is the number of death caused by that mental disorder in that year
+ * @author: A. Shan
  */
 public class BarChartApp{
  
@@ -39,7 +41,7 @@ public class BarChartApp{
         d2.setName(data2.getCountry());
         XYChart.Series d3 = new XYChart.Series<>();
         d3.setName(data3.getCountry());
-
+        // put the data into the bars. The information varys depending on the disorder input. 
         if (disorder.equalsIgnoreCase("schizophrenia")){
             d1.getData().add(new XYChart.Data(p1,data1.getSchizophrenia()));
             d2.getData().add(new XYChart.Data(p2,data2.getSchizophrenia()));

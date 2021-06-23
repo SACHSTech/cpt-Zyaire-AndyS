@@ -34,10 +34,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 /**
- * 
- * This is the main class of the application. 
+ * This is the main class of the application.  
+ * It will launch the main window. 
  * @author Zyaire Q
- * 
  */
 public class Main extends Application {
 
@@ -184,7 +183,6 @@ public class Main extends Application {
     public static Parent barSettings(Stage primaryStage) {
         VBox layout = new VBox();
         ArrayList<Pervalence> list = Sort_Search.getList();
-        //ObservableList<Pervalence> data = Sort_Search.convert(list);
         String country;
         String temp = "";
         Pervalence pervItem;

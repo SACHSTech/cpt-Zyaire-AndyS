@@ -16,17 +16,38 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class contains all of the methods needed for app to run
+ * Also contains sorting and searching methods
+ * It can also store data in the arraylist for other calss to use.
+ * It can also get the summary informaiton
+ * @author: A. Shan
+ */
 public class Sort_Search{
 
     private static ArrayList<Pervalence> list;
     private static ArrayList<Pervalence> inputList;
-
+    
+    /**
+    * Getter method for array list
+    * @return an array list that holds all the data
+    */
     public static ArrayList <Pervalence> getList() {
         return list;
     }
+    /**
+    * Setter method for this private array list. 
+    * @param newList an array list of the data set
+    * @return void
+    */
     public static void setList(ArrayList<Pervalence> newList) {
         list = newList;
     }
+    /**
+    * Convert the array list into an observableList 
+    * @param inputList an array list of the data set
+    * @return ObservableList of data set
+    */
     public static ObservableList convert(ArrayList inputList) {
         ObservableList deathData = FXCollections.observableArrayList();
         int intCount;
@@ -37,6 +58,10 @@ public class Sort_Search{
 
         return deathData;
     }
+    /**
+    * put everything in the list into the observable list
+    * @return Observable list of everything in the data set 
+    */
     public static ObservableList <Pervalence> Everything() {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
         int intCount;
@@ -46,7 +71,11 @@ public class Sort_Search{
         }
         return deathData;
     }
-
+    /**
+    * put everything in the list that has the specific year into the observable list
+    * @param year the year of the data set
+    * @return Observable list of everything in the data set that has the specific year
+    */
     public static ObservableList <Pervalence> searchYear(int year) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
@@ -58,7 +87,11 @@ public class Sort_Search{
         }
         return deathData;
     }
-
+    /**
+    * put everything in the list that is the specific country into the observable list
+    * @param country the country of the data set
+    * @return Observable list of everything in the data set that has the specific country
+    */
     public static ObservableList <Pervalence> byEntity(String country) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
@@ -71,6 +104,12 @@ public class Sort_Search{
         }
         return deathData;
     }
+    /**
+    * put everything in the list that is the specific country and year into the observable list
+    * @param country the country of the data set
+    * @param year the year of the data set
+    * @return Observable list of everything in the data set that has the specific country and year
+    */
     public static Pervalence byEntityAndYear(String country, int year) {
         Pervalence rightPervalence;
         for (int intCount = 0; intCount < list.size(); intCount ++) {
@@ -82,6 +121,11 @@ public class Sort_Search{
         }
         return null;
     }
+    /**
+    * put everything in the list that is the specific code into the observable list
+    * @param code the code of the data set
+    * @return Observable list of everything in the data set that has the specific code
+    */
     public static ObservableList <Pervalence> byCode(String code) {
         ObservableList<Pervalence> deathData = FXCollections.observableArrayList();
 
@@ -93,7 +137,10 @@ public class Sort_Search{
         }
         return deathData;
     }
-
+    /**
+    * calculate the average death caused by Schizophrenia
+    * @return the average for death caused by Schizophrenia
+    */
     public static Double avgForSchizophrenia() {
         double total = 0;
         double avg;
@@ -105,7 +152,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
-
+    /**
+    * calculate the average death caused by Bipolar
+    * @return the average for death caused by Bipolar
+    */
     public static Double avgForBipolar() {
         double total = 0;
         double avg;
@@ -116,7 +166,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
-
+    /**
+    * calculate the average death caused by eating disorder
+    * @return the average for death caused by eating disorder
+    */
     public static Double avgForEating() {
         double total = 0;
         double avg;
@@ -127,7 +180,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
-
+    /**
+    * calculate the average death caused by anxiety
+    * @return the average for death caused by anxiety
+    */
     public static Double avgForAnxiety() {
         double total = 0;
         double avg;
@@ -138,7 +194,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
-
+    /**
+    * calculate the average death caused by drug addiction
+    * @return the average for death caused by drug addiction
+    */
     public static Double avgForDrug() {
         double total = 0;
         double avg;
@@ -149,7 +208,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
-
+    /**
+    * calculate the average death caused by depression
+    * @return the average for death caused by depression
+    */
     public static Double avgForDepress() {
         double total = 0;
         double avg;
@@ -160,6 +222,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
+    /**
+    * calculate the average death caused by alcohol addiction
+    * @return the average for death caused by alcohol addiction
+    */
     public static Double avgForAlcohol() {
         double total = 0;
         double avg;
@@ -170,6 +236,10 @@ public class Sort_Search{
         avg = total / list.size();
         return avg;
     }
+    /**
+    * count the number of countries
+    * @return the number of countries
+    */
     public static Integer count() {
         int count = 0; 
         HashMap <String, Integer> countryHash = new HashMap<>();
@@ -181,6 +251,10 @@ public class Sort_Search{
         }
         return count;
     }
+    /**
+    * calculate the maximum
+    * @return the maximum for drug death
+    */
     public static double MaxForDrug() {
         double max = 0;
         for (int count = 0; count < list.size(); count++) {
@@ -190,6 +264,10 @@ public class Sort_Search{
         }
         return max;
     }
+    /**
+    * calculate the minimum for alcohol death
+    * @return the minimum for alcohol death
+    */
     public static double MinForAlcohol() {
         double min = 0;
         for (int count = 0; count < list.size(); count++) {
@@ -199,6 +277,10 @@ public class Sort_Search{
         }
         return min;
     }
+    /**
+    * the standard deviation for anxiety death
+    * @return the standard deviation for anxiety death
+    */
     public static double SDForAnxiety() {
         double avg;
         double squared;
@@ -226,6 +308,11 @@ public class Sort_Search{
     public static void setMSortArray(ArrayList<Pervalence> input) {
         inputList = input;
     }
+    /**
+    * merge sort
+    * @param input an unsorted array list 
+    * @return the sorted data set
+    */
     public static ArrayList <Pervalence> mergeSort(ArrayList<Pervalence> input) {
         setMSortArray(input);
         divide(0, inputList.size()-1);
