@@ -27,9 +27,11 @@ import javafx.scene.chart.LineChart;
 
  
 /**
- * A chart that displays rectangular bars with heights indicating data values
- * for categories. Used for displaying information when at least one axis has
- * discontinuous or discrete data.
+ * A bar graph that displays the number of death in three countries for a speicifc mental disorder
+ * It allows the user to input the disorder, three different coutries and the year. 
+ * The x-axis are the countries, they will be in different colours
+ * The y-axis is the number of death caused by that mental disorder in that year
+ * @author: A. Shan
  */
 public class BarChartApp{
  
