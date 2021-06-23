@@ -14,7 +14,14 @@ import javafx.stage.Stage;
 import javafx.scene.chart.CategoryAxis;
 
 public class lineChart {
-
+    /**
+     * A line graph that displays the number of death for all disorders in for a speicifc country
+     * It allows the user to input the country
+     * The x-axis are the year
+     * The y-axis is the number of death caused by mental disorder.
+     * The graph will display a line that shows the total number of death caused by mental disorders over time. 
+     * @author: Z. Qu
+     */
     public static Parent createLine(String country, Stage primaryStage) {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -24,7 +31,7 @@ public class lineChart {
         
         chart.setTitle(country);
         xAxis.setLabel("Year");
-        yAxis.setLabel("The number of death");
+        yAxis.setLabel("The number of death caused by all mental disorders");
 
         XYChart.Series <String, Double> line = new XYChart.Series <String, Double>();
         line.setName(country);
