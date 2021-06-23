@@ -31,7 +31,7 @@ public class lineChart {
 
         for (int intCount = 0; intCount < pData.size(); intCount ++) {
             pervalence = pData.get(intCount);
-            line.getData().add(new XYChart.Data (pervalence.getYear(), (pervalence.getSchizophrenia() + pervalence.getBipolar() + pervalence.getEating() + pervalence.getAnxiety() + pervalence.getDrug() + pervalence.getDepress() + pervalence.getAlcohol())));
+            line.getData().add(new XYChart.Data <String, Double>(Integer.toString(pervalence.getYear()), (pervalence.getSchizophrenia() + pervalence.getBipolar() + pervalence.getEating() + pervalence.getAnxiety() + pervalence.getDrug() + pervalence.getDepress() + pervalence.getAlcohol())));
         }
         chart.getData().add(line);
 
