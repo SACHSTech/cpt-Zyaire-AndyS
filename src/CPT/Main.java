@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -42,7 +43,6 @@ public class Main extends Application {
 
     private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
     private TableView<Pervalence> table = new TableView<>();
-    //ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
 
     public static void main(String[] args) {
         launch(args);
@@ -56,6 +56,12 @@ public class Main extends Application {
         ChoiceBox cb = new ChoiceBox();
         cb.getItems().addAll("Dog", "Cat", "Horse");
         cb.getSelectionModel().selectFirst();
+
+        //text file to enter year search
+        TextField yearSearch = new TextField("year");
+        yearSearch.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        yearSearch.setOnAction(
+                e -> Sort_Search.searchYear(Integer.parseInt(yearSearch.getText())));// questionable
 
         //button to open the line chart
         Button other = new Button();
@@ -140,7 +146,7 @@ public class Main extends Application {
 
         HBox header = new HBox(10);
         header.setAlignment(Pos.TOP_CENTER);
-        header.getChildren().addAll(label, textField, cb);
+        header.getChildren().addAll(label, yearSearch, cb);
 
         HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
@@ -223,6 +229,33 @@ public class Main extends Application {
 
         layout.getChildren().addAll(settingLabel, c1, c2, c3, year, disorder, create, back);
         layout.setAlignment(Pos.CENTER);
+
+        return layout;
+    }
+
+    public static Parent createTable(ObservableList<Pervalence> data, Stage primaryStage) {
+
+        TableColumn <String, String> nation = new TableColumn <String, String>();
+        nation.setText("Country");
+        nation.setCellValueFactory(new PropertyValueFactory <String, String> ("Nation"));
+
+        TableColumn <String, String> year = new TableColumn <String, String>();
+        year.setText("Year");
+        year.setCellValueFactory(new PropertyValueFactory <String, String> ("year"));
+
+        TableColumn <String, String> population = new TableColumn <String, String>();
+        population.setText("Population");
+        population.setCellValueFactory(new PropertyValueFactory <String, String> ("population"));
+
+        final TableView tableView = new TableView();
+        tableView.setItems(data);
+        tableView.getColumns().addAll(nation, year, population);
+
+        Button back = new Button("Back to Menu");
+        back.setOnAction(e -> System.out.println("qwq"));
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(tableView, back);
 
         return layout;
     }
