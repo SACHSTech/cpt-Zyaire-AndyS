@@ -36,8 +36,8 @@ public class lineChart {
         XYChart.Series <String, Double> line = new XYChart.Series <String, Double>();
         line.setName(country);
 
-        for (int intCount = 0; intCount < pData.size(); intCount ++) {
-            pervalence = pData.get(intCount);
+        for (int i = 0; i < pData.size(); i++) {
+            pervalence = pData.get(i);
             line.getData().add(new XYChart.Data <String, Double>(Integer.toString(pervalence.getYear()), (pervalence.getSchizophrenia() + pervalence.getBipolar() + pervalence.getEating() + pervalence.getAnxiety() + pervalence.getDrug() + pervalence.getDepress() + pervalence.getAlcohol())));
         }
         chart.getData().add(line);
