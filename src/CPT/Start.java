@@ -29,14 +29,13 @@ public class Start extends Application {
         }
         Sort_Search.setList(pervalenceName);
         br.close();
-        // final ObservableList<Pervalence> aryObserve = FXCollections.observableArrayList(pervalenceName);
         launch(args);
     }
 
     // Start app
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(Main.start(primaryStage), 1290, 600));
+        primaryStage.setScene(new Scene(Main.start(primaryStage), 500, 330));
         primaryStage.setTitle("Pervalence Caused by Disorders in Different Countries");
         primaryStage.show();
     }

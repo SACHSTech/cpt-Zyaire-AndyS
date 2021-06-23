@@ -38,38 +38,50 @@ public class Main {
 
     public static Parent start(Stage primaryStage) {
         
-        //TableView<Pervalence> table = new TableView<>();
-        
-        
-
-        Label label = new Label("Search Result:");
-        ChoiceBox cb = new ChoiceBox();
-        cb.getItems().addAll("Dog", "Cat", "Horse");
-        cb.getSelectionModel().selectFirst();
-
+        //lable for year search
+        Label yearLabel = new Label("Search for years:");
         //text file to enter year search
         TextField yearS = new TextField("Year");
         yearS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-        yearS.setOnAction(e -> primaryStage.setScene(new Scene(byYear(Integer.parseInt(yearS.getText()), primaryStage), 350, 450)));
+        yearS.setOnAction(e -> primaryStage.setScene(new Scene(yearSch(Integer.parseInt(yearS.getText()), primaryStage), 1200, 500)));
+
+        //lable for country search
+        Label countryLabel = new Label("Search for country:");
+        //text file to enter year search
+        TextField countryS = new TextField("Country");
+        countryS.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        countryS.setOnAction(e -> primaryStage.setScene(new Scene(countrySch(countryS.getText(), primaryStage), 1200, 500)));
 
         //button to open the line chart
         Button lineChart = new Button("Create Line Chart");
         lineChart.setDefaultButton(true);
-        lineChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
+        lineChart.setOnAction(e -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
         
+        Label sortLabel = new Label("Sort: ");
+        Button sortBtn = new Button("Sort");
+        /*
+        sortBtn.setOnAction(e -> primaryStage.setScene(new Scene(
+                createTable(Sort_Search .convert(Sort_Search.mergeSort(Methods.searchYear(searchYear.getText()))), primaryStage),
+                350, 450)));
+        */
+
         //Table view
         Button viewAll = new Button("View All Data");
-        viewAll.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.Everything(), primaryStage), 350, 450)));
+        viewAll.setOnAction(e -> primaryStage.setScene(new Scene(createTable(Sort_Search.Everything(), primaryStage), 1200, 500)));
         
 
         //button to open the bar chart
         Button barChart = new Button("Create Bar Chart");
         barChart.setDefaultButton(true);
-        barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
+        barChart.setOnAction(e -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
 
-        HBox header = new HBox(10);
-        header.setAlignment(Pos.TOP_CENTER);
-        header.getChildren().addAll(label, yearS, cb);
+        HBox high1 = new HBox(10);
+        high1.setAlignment(Pos.TOP_CENTER);
+        high1.getChildren().addAll(yearLabel, yearS);
+
+        HBox high2= new HBox(10);
+        high2.setAlignment(Pos.TOP_CENTER);
+        high2.getChildren().addAll(countryLabel, countryS);
 
         HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
@@ -77,16 +89,22 @@ public class Main {
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
-        vbox.getChildren().addAll(header,viewAll, cb, bottom); 
+        vbox.getChildren().addAll(high2, viewAll, bottom, high1); 
         
         return vbox;
     } 
    
     
-    public static Parent byYear(int year, Stage primaryStage) {
+    public static Parent yearSch(int year, Stage primaryStage) {
         ObservableList<Pervalence> data = Sort_Search.searchYear(year);
         Parent table = createTable(data, primaryStage);
 
+        return table;
+    }
+
+    public static Parent countrySch(String country, Stage primaryStage) {
+        ObservableList<Pervalence> data = Sort_Search.byEntity(country);
+        Parent table = createTable(data, primaryStage);
         return table;
     }
 
@@ -123,7 +141,7 @@ public class Main {
                 c2.getText(), c3.getText(), Integer.parseInt(year.getText()), primaryStage))));
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         layout.getChildren().addAll(settingLabel, c1, c2, c3, year, disorder, create, back);
         layout.setAlignment(Pos.CENTER);
@@ -151,7 +169,7 @@ public class Main {
         create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getText(), primaryStage))));
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 300, 250)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         layout.getChildren().addAll(settingLabel, c1, create, back);
         layout.setAlignment(Pos.CENTER);
@@ -194,7 +212,7 @@ public class Main {
 
         TableColumn <String, String> depress = new TableColumn <String, String>();
         depress.setText("Depression");
-        depress.setCellValueFactory(new PropertyValueFactory <String, String> ("depression"));
+        depress.setCellValueFactory(new PropertyValueFactory <String, String> ("depress"));
 
         TableColumn <String, String> alcohol = new TableColumn <String, String>();
         alcohol.setText("Alcohol Addiction");
@@ -206,7 +224,7 @@ public class Main {
         tableView.getColumns().addAll(country, year, code, schizophrenia, bipolar, eating, anxiety, drug, depress, alcohol);
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 1290, 400)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(start(primaryStage), 500, 330)));
 
         VBox layout = new VBox();
         layout.getChildren().addAll(tableView, back);
