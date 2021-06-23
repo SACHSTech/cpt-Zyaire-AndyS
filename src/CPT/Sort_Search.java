@@ -8,6 +8,13 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class contains all of the methods needed for app to run
+ * Also contains sorting and searching methods
+ * It can also store data in the arraylist for other calss to use.
+ * It can also get the summary informaiton
+ * @author: A. Shan
+ */
 public class Sort_Search{
 
     private static ArrayList<Pervalence> list;
