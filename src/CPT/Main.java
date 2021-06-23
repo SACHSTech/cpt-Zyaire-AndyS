@@ -206,7 +206,7 @@ public class Main {
         c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         Button create = new Button("Create!");
-        Label settingLabel = new Label("BarChart Settings");
+        Label settingLabel = new Label("Linechart Settings");
 
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);

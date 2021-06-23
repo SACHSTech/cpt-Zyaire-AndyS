@@ -45,10 +45,10 @@ public class lineChart {
         chart.getData().add(line);
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(Main.start(primaryStage), 300, 250)));
+        back.setOnAction(e -> primaryStage.setScene(new Scene(Main.start(primaryStage), 500, 330)));
 
         Button Settings = new Button("Settings");
-        Settings.setOnAction(e -> primaryStage.setScene(new Scene(Main.barSettings(primaryStage), 300, 250)));
+        Settings.setOnAction(e -> primaryStage.setScene(new Scene(Main.lineSettings(primaryStage), 500, 330)));
 
         VBox box = new VBox();
 
