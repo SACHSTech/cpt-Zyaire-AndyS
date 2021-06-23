@@ -92,11 +92,10 @@ public class Sort_Search{
     * @param year the year of the data set
     * @return Array list of everything in the data set that has the specific year
     */
-    public static ArrayList <Pervalence> searchYearInArrayList(String year) {
+    public static ArrayList <Pervalence> searchYearInArrayList(int year) {
         ArrayList<Pervalence> deathData = new ArrayList <Pervalence> ();
         for (int intCount = 0; intCount < list.size(); intCount ++) {
-
-            if (Integer.parseInt(year) == (list.get(intCount).getYear())) {
+            if (year == (list.get(intCount).getYear())) {
                 deathData.add(list.get(intCount));
             }
         }
