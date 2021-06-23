@@ -20,7 +20,7 @@ public class lineChart {
      * The x-axis are the year
      * The y-axis is the number of death caused by mental disorder.
      * The graph will display a line that shows the total number of death caused by mental disorders over time. 
-     * @author: A. Shan
+     * @author: A.Shan
      */
     public static Parent createLine(String country, Stage primaryStage) {
         CategoryAxis xAxis = new CategoryAxis();
@@ -36,8 +36,8 @@ public class lineChart {
         XYChart.Series <String, Double> line = new XYChart.Series <String, Double>();
         line.setName(country);
 
-        for (int intCount = 0; intCount < pData.size(); intCount ++) {
-            pervalence = pData.get(intCount);
+        for (int i = 0; i < pData.size(); i++) {
+            pervalence = pData.get(i);
             line.getData().add(new XYChart.Data <String, Double>(Integer.toString(pervalence.getYear()), (pervalence.getSchizophrenia() + pervalence.getBipolar() + pervalence.getEating() + pervalence.getAnxiety() + pervalence.getDrug() + pervalence.getDepress() + pervalence.getAlcohol())));
         }
         chart.getData().add(line);

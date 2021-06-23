@@ -2,13 +2,8 @@ package CPT;
 
 import java.io.BufferedReader;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.FileReader;
@@ -26,17 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 /**
  * This is the main class of the application.  
  * It will launch the main window. 
- * @author Zyaire Q
+ * @author Q.Zyaire
  */
 public class Main extends Application {
 
@@ -63,19 +54,13 @@ public class Main extends Application {
                 e -> Sort_Search.searchYear(Integer.parseInt(yearSearch.getText())));// questionable
 
         //button to open the line chart
-        Button other = new Button();
-        other.setText("Another Chart");
-        other.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("bar chart ??");
-            }
-        });
+        Button lineChart = new Button("Create Line Chart");
+        lineChart.setDefaultButton(true);
+        lineChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(lineSettings(primaryStage), 300, 250)));
  
 
         //button to open the bar chart
-        Button barChart = new Button("Create LineChart");
+        Button barChart = new Button("Create Bar Chart");
         barChart.setDefaultButton(true);
         barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
         
@@ -149,7 +134,7 @@ public class Main extends Application {
 
         HBox bottom = new HBox(150);    
         bottom.setAlignment(Pos.BOTTOM_CENTER);
-        bottom.getChildren().addAll(other, mergeBtn, barChart);
+        bottom.getChildren().addAll(lineChart, mergeBtn, barChart);
         
         VBox vbox = new VBox(15);
         vbox.setPadding(new Insets(10, 20, 30, 20));
@@ -231,6 +216,42 @@ public class Main extends Application {
         return layout;
     }
 
+    public static Parent lineSettings(Stage primaryStage) {
+        VBox layout = new VBox();
+        ArrayList<Pervalence> list = Sort_Search.getList();
+        String country;
+        String temp = "";
+        Pervalence pervItem;
+        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
+        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+
+        Button create = new Button("Create!");
+        Label settingLabel = new Label("BarChart Settings");
+
+        for (int i = 0; i < list.size(); i++) {
+            pervItem = list.get(i);
+            country = pervItem.getCountry();
+            
+            if (!country.equals(temp)) {
+                c1.getItems().add(pervItem);
+            }
+
+            temp = country;
+        }
+        
+
+        create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getValue().getCountry(), primaryStage))));
+
+        Button back = new Button("Back to Menu");
+        back.setOnAction(e -> System.out.println("qwq"));
+
+        layout.getChildren().addAll(settingLabel, c1, create, back);
+        layout.setAlignment(Pos.CENTER);
+
+        return layout;
+    }
+
+    /*
     public static Parent createTable(ObservableList<Pervalence> data, Stage primaryStage) {
 
         TableColumn <String, String> nation = new TableColumn <String, String>();
@@ -257,5 +278,6 @@ public class Main extends Application {
 
         return layout;
     }
+    */
 
 }
