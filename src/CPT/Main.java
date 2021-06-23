@@ -35,14 +35,12 @@ import javafx.scene.text.Text;
 /**
  * 
  * This is the main class of the application. 
- * It will launch the main window. 
- * @author Alyanna Santos
+ * @author Zyaire Q
  * 
  */
 public class Main extends Application {
 
     private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
-    private TextField textField = new TextField();
     private TableView<Pervalence> table = new TableView<>();
     //ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
 
@@ -180,9 +178,9 @@ public class Main extends Application {
     public static Parent barSettings(Stage primaryStage) {
         VBox layout = new VBox();
         ArrayList<Pervalence> list = Sort_Search.getList();
-        // ObservableList<Pervalence> data = FXCollections.observableArrayList(list); no see see
+        //ObservableList<Pervalence> data = Sort_Search.convert(list);
         String country;
-        String prevC = "";
+        String temp = "";
         Pervalence pervItem;
         ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
         c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
@@ -205,13 +203,15 @@ public class Main extends Application {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            if (!country.equals(prevC)) {
+            
+
+            if (!country.equals(temp)) {
                 c1.getItems().add(pervItem);
                 c2.getItems().add(pervItem);
                 c3.getItems().add(pervItem);
             }
 
-            prevC = country;
+            temp = country;
         }
         
 
