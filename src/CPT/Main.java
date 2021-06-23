@@ -169,16 +169,15 @@ public class Main extends Application {
         VBox layout = new VBox();
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
-        String temp = "";
         Pervalence pervItem;
-        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
-        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c1 = new TextField("Enter Country 1");
+        c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Pervalence> c2 = new ChoiceBox <Pervalence>();
-        c2.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c2 = new TextField("Enter Country 2");
+        c2.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Pervalence> c3 = new ChoiceBox <Pervalence>();
-        c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c3 = new TextField("Enter Country 3");
+        c3.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         TextField year = new TextField("Year 1990 - 2017");
         year.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
@@ -192,20 +191,11 @@ public class Main extends Application {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            
-
-            if (!country.equals(temp)) {
-                c1.getItems().add(pervItem);
-                c2.getItems().add(pervItem);
-                c3.getItems().add(pervItem);
-            }
-
-            temp = country;
         }
         
 
-        create.setOnAction(e -> primaryStage.setScene(new Scene(BarChartApp.createContent(disorder.getText(), c1.getValue().getCountry(),
-                c2.getValue().getCountry(), c3.getValue().getCountry(), Integer.parseInt(year.getText()), primaryStage))));
+        create.setOnAction(e -> primaryStage.setScene(new Scene(BarChartApp.createContent(disorder.getText(), c1.getText(),
+                c2.getText(), c3.getText(), Integer.parseInt(year.getText()), primaryStage))));
 
         Button back = new Button("Back to Menu");
         back.setOnAction(e -> System.out.println("qwq"));
@@ -220,10 +210,9 @@ public class Main extends Application {
         VBox layout = new VBox();
         ArrayList<Pervalence> list = Sort_Search.getList();
         String country;
-        String temp = "";
         Pervalence pervItem;
-        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
-        c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
+        TextField c1 = new TextField("Enter Country");
+        c1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         Button create = new Button("Create!");
         Label settingLabel = new Label("BarChart Settings");
@@ -231,16 +220,10 @@ public class Main extends Application {
         for (int i = 0; i < list.size(); i++) {
             pervItem = list.get(i);
             country = pervItem.getCountry();
-            
-            if (!country.equals(temp)) {
-                c1.getItems().add(pervItem);
-            }
-
-            temp = country;
         }
         
 
-        create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getValue().getCountry(), primaryStage))));
+        create.setOnAction(e -> primaryStage.setScene(new Scene(lineChart.createLine(c1.getText(), primaryStage))));
 
         Button back = new Button("Back to Menu");
         back.setOnAction(e -> System.out.println("qwq"));
