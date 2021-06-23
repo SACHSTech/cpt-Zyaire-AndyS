@@ -32,7 +32,7 @@ import javafx.scene.layout.VBox;
  * 
  * This is the main class of the application. 
  * It will launch the main window. 
- * @author Alyanna Santos
+ * 
  * 
  */
 public class Main extends Application {
