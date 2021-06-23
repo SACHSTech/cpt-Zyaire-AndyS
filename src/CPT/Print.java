@@ -26,7 +26,7 @@ public class Print extends Application{
           data = br.readLine();
       }
       br.close();
-      Sort_Search.setList(pervalenceName);
+      System.out.println(Sort_Search.Everything());
       
       launch(args);
 
