@@ -44,7 +44,7 @@ public class Main extends Application {
     private ObservableList<Pervalence> pervList = FXCollections.observableArrayList();
     private TextField textField = new TextField();
     private TableView<Pervalence> table = new TableView<>();
-    //private TableView<Pervalence> dataTable = new TableView<>();
+    //ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
 
     public static void main(String[] args) {
         launch(args);
@@ -73,8 +73,8 @@ public class Main extends Application {
 
         //button to open the bar chart
         Button barChart = new Button("Create LineChart");
-        //barChart.setDefaultButton(true);
-        //barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
+        barChart.setDefaultButton(true);
+        barChart.setOnAction((ActionEvent t) -> primaryStage.setScene(new Scene(barSettings(primaryStage), 300, 250)));
         
 
         //button to do the merge sort
@@ -161,67 +161,72 @@ public class Main extends Application {
      * It also calculates the total points per position.
      * @throws FIOException
      */
-    private void readFile() throws IOException {
+    public void readFile() throws IOException {
+        ArrayList<Pervalence> pervalenceName = new ArrayList<Pervalence>();
         BufferedReader br = new BufferedReader(new FileReader("src/CPT/PervalenceByDisorders.csv"));
         br.readLine();
         String data;
         data = br.readLine();
         while (data != null) {
             var split = data.split(",");
+            pervalenceName.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
             pervList.add(new Pervalence(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), Double.parseDouble(split[4]), Double.parseDouble(split[5]), Double.parseDouble(split[6]), Double.parseDouble(split[7]), Double.parseDouble(split[8]), Double.parseDouble(split[9])));
             data = br.readLine();
         }
         br.close();
+        Sort_Search.setList(pervalenceName);
+        System.out.println(Sort_Search.Everything());
     }
-    /*
+
     public static Parent barSettings(Stage primaryStage) {
         VBox layout = new VBox();
-        ArrayList<Country> list = Methods.getList();
-        String cName;
+        ArrayList<Pervalence> list = Sort_Search.getList();
+        String country;
         String prevC = "";
-        Country country;
-        ChoiceBox<Country> c1 = new ChoiceBox <Country>();
+        Pervalence pervItem;
+        ChoiceBox<Pervalence> c1 = new ChoiceBox <Pervalence>();
         c1.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Country> c2 = new ChoiceBox <Country>();
+        ChoiceBox<Pervalence> c2 = new ChoiceBox <Pervalence>();
         c2.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
 
-        ChoiceBox<Country> c3 = new ChoiceBox <Country>();
+        ChoiceBox<Pervalence> c3 = new ChoiceBox <Pervalence>();
         c3.setMaxSize(140, ChoiceBox.USE_COMPUTED_SIZE);
 
-        TextField startY = new TextField("Start Year");
-        startY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        TextField year = new TextField("Year");
+        year.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
-        TextField endY = new TextField("End Year");
-        endY.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        TextField disorder = new TextField("Disorder");
+        disorder.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         Button create = new Button("Create!");
         Label settingLabel = new Label("BarChart Settings");
+        System.out.println(list.size());
 
-        for (int intCount = 0; intCount < list.size(); intCount++) {
-            country = list.get(intCount);
-            cName = country.getNation();
-            country = Methods.getHMap().get(cName);
-
-            if (!cName.equals(prevC)) {
-                c1.getItems().add(country);
-                c2.getItems().add(country);
-                c3.getItems().add(country);
+        for (int i = 0; i < list.size(); i++) {
+            pervItem = list.get(i);
+            country = pervItem.getCountry();
+            System.out.println(country);
+            if (!country.equals(prevC)) {
+                c1.getItems().add(pervItem);
+                c2.getItems().add(pervItem);
+                c3.getItems().add(pervItem);
             }
 
-            prevC = cName;
+            prevC = country;
         }
+        
 
-        create.setOnAction(e -> primaryStage.setScene(new Scene(createBar(startY.getText(), endY.getText(),
-                c1.getValue(), c2.getValue(), c3.getValue(), primaryStage))));
+        create.setOnAction(e -> primaryStage.setScene(new Scene(BarChartApp.createContent(disorder.getText(), c1.getValue().getCountry(),
+                c2.getValue().getCountry(), c3.getValue().getCountry(), Integer.parseInt(year.getText()), primaryStage))));
 
         Button back = new Button("Back to Menu");
-        back.setOnAction(e -> primaryStage.setScene(new Scene(mainMenu(primaryStage), 300, 250)));
+        back.setOnAction(e -> System.out.println("qwq"));
 
-        layout.getChildren().addAll(settingLabel, c1, c2, c3, startY, endY, create, back);
+        layout.getChildren().addAll(settingLabel, c1, c2, c3, year, disorder, create, back);
         layout.setAlignment(Pos.CENTER);
 
         return layout;
     }
-    */
+
 }
